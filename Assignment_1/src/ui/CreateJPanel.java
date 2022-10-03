@@ -81,9 +81,9 @@ public class CreateJPanel extends javax.swing.JPanel {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        lblCreate.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        lblCreate.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         lblCreate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCreate.setText("Create");
+        lblCreate.setText("Create Your Profile");
         lblCreate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblName.setText("Name");
@@ -251,7 +251,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTeam_info)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPosition_Title, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -307,10 +307,27 @@ public class CreateJPanel extends javax.swing.JPanel {
         String Level = txtLevel.getText();
         String Team_info = (txtTeam_Info.getText());
         String Position_title = (txtPosition_Title.getText());
+        String Phone_NumberRegex = "\\d{10}";
+        
         long Phone_Number = Long.parseLong(txtPhone_Number.getText());
+
+        if (!txtPhone_Number.getText().matches(Phone_NumberRegex)) {
+            JOptionPane.showMessageDialog(this, "Enter Valid Cell Phone Number");
+            return;
+        }
         
         
-        String Email = (txtEmail_Address.getText());
+        
+        
+        String emailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String Email = txtEmail_Address.getText();
+
+        if (!Email.matches(emailRegex)) {
+            JOptionPane.showMessageDialog(this, "Enter Valid Email Address!");
+            return;
+        }
+        
+        
         ImageIcon pic = new ImageIcon(lblPhotoUrl.getText());
         Employee e = History.addEmployee();
         

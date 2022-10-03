@@ -90,7 +90,7 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("View / Read");
+        jLabel1.setText("View / Read Employee Data");
 
         btnView.setText("View");
         btnView.addActionListener(new java.awt.event.ActionListener() {

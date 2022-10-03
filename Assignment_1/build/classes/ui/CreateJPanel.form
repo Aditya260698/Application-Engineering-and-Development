@@ -152,7 +152,7 @@
                       <Component id="lblTeam_info" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" pref="124" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="109" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -184,10 +184,10 @@
     <Component class="javax.swing.JLabel" name="lblCreate">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Helvetica Neue" size="24" style="0"/>
+          <Font name="Helvetica Neue" size="36" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Create"/>
+        <Property name="text" type="java.lang.String" value="Create Your Profile"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>

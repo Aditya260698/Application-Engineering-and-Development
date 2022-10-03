@@ -189,7 +189,7 @@
           <Font name="Helvetica Neue" size="36" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="View / Read"/>
+        <Property name="text" type="java.lang.String" value="View / Read Employee Data"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnView">
