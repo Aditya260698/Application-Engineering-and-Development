@@ -2,24 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UserInterface.CommunityWorkArea;
+package UserInterface.SystemWorkArea;
 
 import UserInterface.MainJFrame;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author adity
  */
-public class CommunityJFrame extends javax.swing.JFrame {
+public class SystemJFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form CommunityJFrame
+     * Creates new form SystemJFrame
      */
     public static String username;
     
-    public CommunityJFrame(String urername) {
+     public SystemJFrame(String username) {
         initComponents();
         this.username = username;
         
@@ -30,9 +29,9 @@ public class CommunityJFrame extends javax.swing.JFrame {
             mainFrame.main(null);
         }
         
-        SystemDoctorWorkPanel systempatient = new SystemDoctorWorkPanel();
-        jSplitPaneSystem.setRightComponent(systempatient);
-    
+        SystemPatientWorkPanel systemPatient = new SystemPatientWorkPanel();
+        jSplitPaneSystem.setRightComponent(systemPatient);
+        
     }
 
     /**
@@ -44,20 +43,13 @@ public class CommunityJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDoctor = new javax.swing.JButton();
         btnPatient = new javax.swing.JButton();
+        btnDoctor = new javax.swing.JButton();
         btnHospital = new javax.swing.JButton();
-        btnEncounters = new javax.swing.JButton();
+        btnEncounter = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnDoctor.setText("Doctor");
-        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoctorActionPerformed(evt);
-            }
-        });
 
         btnPatient.setText("Patient");
         btnPatient.addActionListener(new java.awt.event.ActionListener() {
@@ -66,19 +58,11 @@ public class CommunityJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnHospital.setText("Hospitals");
-        btnHospital.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHospitalActionPerformed(evt);
-            }
-        });
+        btnDoctor.setText("Doctor");
 
-        btnEncounters.setText("Encounters");
-        btnEncounters.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEncountersActionPerformed(evt);
-            }
-        });
+        btnHospital.setText("Hospital");
+
+        btnEncounter.setText("Encounter");
 
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -92,53 +76,41 @@ public class CommunityJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnEncounters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(151, 151, 151)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEncounter, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                     .addComponent(btnDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(btnDoctor)
-                .addGap(47, 47, 47)
+                .addGap(24, 24, 24)
                 .addComponent(btnPatient)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
+                .addComponent(btnDoctor)
+                .addGap(18, 18, 18)
                 .addComponent(btnHospital)
-                .addGap(43, 43, 43)
-                .addComponent(btnEncounters)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEncounter)
+                .addGap(29, 29, 29)
                 .addComponent(btnLogout)
-                .addGap(15, 15, 15))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEncountersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncountersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEncountersActionPerformed
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLogoutActionPerformed
-
-    private void btnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDoctorActionPerformed
-
     private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPatientActionPerformed
 
-    private void btnHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnHospitalActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,29 +129,27 @@ public class CommunityJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CommunityJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CommunityJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CommunityJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CommunityJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SystemJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CommunityJFrame systemFrame = new CommunityJFrame(username);
-               systemFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-               systemFrame.setVisible(true);
+                new SystemJFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDoctor;
-    private javax.swing.JButton btnEncounters;
+    private javax.swing.JButton btnEncounter;
     private javax.swing.JButton btnHospital;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPatient;
