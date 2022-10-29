@@ -4,7 +4,7 @@
  */
 package UserInterface;
 
-import UI.LoginJPanel;
+import UserInterface.UserLogin.LoginJPanel;
 import javax.swing.JFrame;
 
 /**

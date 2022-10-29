@@ -44,6 +44,8 @@ public class SystemCreateDoctor extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 255, 255));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 
         lblCreateDoctorProfile.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblCreateDoctorProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

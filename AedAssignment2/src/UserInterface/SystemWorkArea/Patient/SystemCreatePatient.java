@@ -4,6 +4,20 @@
  */
 package UserInterface.SystemWorkArea.Patient;
 
+import java.awt.Color;
+import java.awt.event.ItemEvent;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import JAVAMainModel.City;
+import JAVAMainModel.Community;
+import JAVAMainModel.House;
+import JAVAMainModel.Patient;
+import JAVAMainModel.PatientDirectory;
+import JAVAMainModel.Person;
+import JAVAMainModel.PersonDirectory;
 /**
  *
  * @author adity
@@ -13,9 +27,19 @@ public class SystemCreatePatient extends javax.swing.JFrame {
     /**
      * Creates new form SystemCreatePatient
      */
-    public SystemCreatePatient() {
+    PersonDirectory personDirectory;
+    PatientDirectory patientDirectory;
+    boolean emptyValidationStatus = true;
+    boolean validationCheck = true;
+    
+    public SystemCreatePatient(PersonDirectory personDirectory, PatientDirectory patientDirectory) {
         initComponents();
+        initCityCmbx();
+        this.personDirectory = personDirectory;
+        this.patientDirectory = patientDirectory;
+        
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,22 +68,23 @@ public class SystemCreatePatient extends javax.swing.JFrame {
         lblStreet = new javax.swing.JLabel();
         lblCity = new javax.swing.JLabel();
         lblState = new javax.swing.JLabel();
-        lblCommunity = new javax.swing.JLabel();
         lblMobileNo = new javax.swing.JLabel();
         txtHouseNo = new javax.swing.JTextField();
         txtStreetAddress = new javax.swing.JTextField();
-        txtCity = new javax.swing.JTextField();
-        txtState = new javax.swing.JTextField();
-        txtCommunity = new javax.swing.JTextField();
         txtMobileNo = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        CBoxCity = new javax.swing.JComboBox<>();
+        CBoxState = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        CBoxCommunity = new javax.swing.JComboBox<>();
 
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Email");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 255, 255));
 
         lblCreateNewPatient.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblCreateNewPatient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -104,22 +129,7 @@ public class SystemCreatePatient extends javax.swing.JFrame {
         lblState.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblState.setText("State");
 
-        lblCommunity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCommunity.setText("Community");
-
         lblMobileNo.setText("Mobile No.");
-
-        txtCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCityActionPerformed(evt);
-            }
-        });
-
-        txtState.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStateActionPerformed(evt);
-            }
-        });
 
         txtMobileNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +147,19 @@ public class SystemCreatePatient extends javax.swing.JFrame {
             }
         });
 
+        CBoxCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBoxCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBoxCityActionPerformed(evt);
+            }
+        });
+
+        CBoxState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NY", "MA", "CA", "TX" }));
+
+        jLabel1.setText("Community");
+
+        CBoxCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,6 +168,14 @@ public class SystemCreatePatient extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(lblPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -175,24 +206,16 @@ public class SystemCreatePatient extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(CBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblCommunity))
+                                        .addComponent(jLabel1))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(lblStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMobileNo))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(lblPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122)))
+                                    .addComponent(lblMobileNo)
+                                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblContactInformation)
@@ -201,11 +224,11 @@ public class SystemCreatePatient extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtHouseNo)
                             .addComponent(txtStreetAddress)
-                            .addComponent(txtCity)
-                            .addComponent(txtState)
-                            .addComponent(txtCommunity)
                             .addComponent(txtMobileNo)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                            .addComponent(txtEmail)
+                            .addComponent(CBoxCity, 0, 203, Short.MAX_VALUE)
+                            .addComponent(CBoxState, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CBoxCommunity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -214,6 +237,10 @@ public class SystemCreatePatient extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblCreateNewPatient)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSave)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -241,41 +268,34 @@ public class SystemCreatePatient extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCity))
-                                .addGap(12, 12, 12))
+                                    .addComponent(lblCity)
+                                    .addComponent(CBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblWeight)
                                     .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblAge)
                             .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblState))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(CBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblGender))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCommunity))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtMobileNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMobileNo))))
+                            .addComponent(lblState)
+                            .addComponent(CBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEmail)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(27, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSave)
-                        .addContainerGap())))
+                            .addComponent(CBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGender)
+                            .addComponent(jLabel1)
+                            .addComponent(CBoxCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMobileNo)
+                            .addComponent(txtMobileNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmail))
+                        .addGap(33, 33, 33))))
         );
 
         pack();
@@ -285,64 +305,274 @@ public class SystemCreatePatient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHeightActionPerformed
 
-    private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCityActionPerformed
-
-    private void txtStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStateActionPerformed
-
     private void txtMobileNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMobileNoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMobileNoActionPerformed
-
+    
+    
+    
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        try{
+            if(EmpytyFieldValidation()){
+
+                if(RegexValidation()){
+                    
+                    String name = txtName.getText();
+                    long cellPhoneNumber = Long.parseLong(txtMobileNo.getText());
+                    String emailId = txtEmail.getText();
+                    int age = Integer.parseInt( txtAge.getText());
+                    String gender = CBoxGender.getSelectedItem().toString();
+                    
+                    House house = new House();
+                    Community community = new Community();
+                    
+                    house.setHouseNum(Integer.parseInt(txtHouseNo.getText()));
+                    house.setStreet(txtStreetAddress.getText());
+                    
+                  
+                    
+                    float height = Float.parseFloat(txtHeight.getText());
+                    float weight = Float.parseFloat(txtWeight.getText());
+                    
+                    Random random=new Random();
+                    int patientID=random.nextInt((9999 - 100) + 1) + 10;
+                     
+                    Person patient = new Patient(name,cellPhoneNumber,emailId,age,gender,house,patientID ,height ,weight);
+                    personDirectory.addNewPerson(patient);
+                    patientDirectory.addNewPatient(patient);
+                    
+                    JOptionPane.showMessageDialog(this,"Patient Registered Successfully.Your New Patient Id is:"+patientID+",Please save this Patient Id for furture appointments.");
+                    
+                    
+//                    Patient patient = new Patient();
+//                    House house = new House();
+//                    Community community = new Community();
+//
+//                    person.setName(txtName.getText());
+//                    person.setAge(Integer.parseInt( txtAge.getText()));
+//                    person.setCellPhoneNumber(Long.parseLong(txtCellPhoneNo.getText()));
+//                    person.setEmailId(txtEmailID.getText());
+//                    person.setGender(comboGender.getSelectedItem().toString());
+//
+//                    patient.setHeight(Float.parseFloat(txtHeight.getText()));
+//                    patient.setWeight(Float.parseFloat(txtWeight.getText()));
+//                    Random random=new Random();
+//                    int PatientID=random.nextInt((9999 - 100) + 1) + 10;
+//                    patient.setPatientId(PatientID);
+//
+//                    house.setHouseNum(Integer.parseInt(txtHouseNo.getText()));
+//                    house.setStreet(txtStreet.getText());
+//
+//                    Map<String,String>communities=new HashMap<>();
+//                    communities.put(comboCity.getSelectedItem().toString(),comboCommunity.getSelectedItem().toString());
+//                    community.setCommunity(communities);
+//
+//                    house.setCommunity(community);
+//                    person.setHouse(house);
+
+                   
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Some Error in entered data.Please check over the red fields to know more.");
+                    validationCheck=true;
+                }
+            }
+            else{
+                    JOptionPane.showMessageDialog(this,"Some Error in entered data. Please check over the red fields to know more.");
+                    emptyValidationStatus=true;
+                }   
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Patient not registered, Try again");
+            System.out.println(e.toString());
+            emptyValidationStatus=true;
+            if(personDirectory.getPersonDirectory().size()>0)
+            personDirectory.getPersonDirectory().remove(personDirectory.getPersonDirectory().size() - 1);
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void comboCityItemStateChanged(java.awt.event.ItemEvent evt) {                                           
+        // TODO add your handling code here:
+        initCommunityCmbx();
+    } 
+    
+    private boolean RegexValidation() {
+        if(!txtName.getText().matches("^[a-zA-Z ]+$"))
+        {
+            txtName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtName.setToolTipText("Please enter only characters and space.");
+            validationCheck=false;
+        }
+        
+        if(txtName.getText().matches("^[a-zA-Z ]+$"))
+        {
+            txtName.setBorder(BorderFactory.createLineBorder(Color.BLUE, 0));
+        }
+        
+        
+        if(!txtAge.getText().matches("\\b\\d+\\b"))
+        {
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtAge.setToolTipText("Pleae enter only numbers");
+            validationCheck=false;
+        }
+        
+        if(txtAge.getText().matches("\\b\\d+\\b"))
+        {
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(!txtHeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHeight.setToolTipText("Pleae enter only numbers");
+            validationCheck=false;
+        }
+        
+        if(txtHeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(!txtWeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtWeight.setToolTipText("Pleae enter only numbers");
+            validationCheck=false;
+        }
+        
+        if(txtWeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(!txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+        {
+            txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtEmail.setToolTipText("Please enter a valid Email Address in the form abc@xyy.com");
+            validationCheck=false;
+        }
+        
+        if(txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+        {
+            txtEmail.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(!txtMobileNo.getText().matches("^[0-9]{10}$"))
+        {
+            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtMobileNo.setToolTipText("Please enter a 10 digit number");
+            validationCheck=false;
+        }
+        
+        if(txtMobileNo.getText().matches("^[0-9]{10}$"))
+        {
+            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        return validationCheck;
+    }
+    
+    private boolean EmpytyFieldValidation() {
+        if(txtName.getText().equals(null) || txtName.getText().trim().isEmpty() )
+        {
+            txtName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtName.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+        if(!txtName.getText().equals(null) && !txtName.getText().trim().isEmpty() )
+        {
+            txtName.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+       
+        if(txtAge.getText().equals(null) || txtAge.getText().trim().isEmpty())
+        {
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtAge.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+        if(!txtAge.getText().equals(null) && !txtAge.getText().trim().isEmpty())
+        {
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+         if(txtHeight.getText().equals(null) || txtHeight.getText().trim().isEmpty())
+        {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHeight.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+         if(!txtHeight.getText().equals(null) && !txtHeight.getText().trim().isEmpty())
+        {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        if(txtWeight.getText().equals(null) || txtWeight.getText().trim().isEmpty())
+        {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtWeight.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+         if(!txtWeight.getText().equals(null) && !txtWeight.getText().trim().isEmpty())
+        {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+            
+        }
+         
+        if(txtHouseNo.getText().equals(null) || txtHouseNo.getText().trim().isEmpty())
+        {
+            txtHouseNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHouseNo.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+        if(!txtHouseNo.getText().equals(null) && !txtHouseNo.getText().trim().isEmpty())
+        {
+            txtHouseNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        
+        if(txtStreetAddress.getText().equals(null)|| txtStreetAddress.getText().trim().isEmpty())
+        {
+            txtStreetAddress.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtStreetAddress.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+        if(!txtStreetAddress.getText().equals(null) && !txtStreetAddress.getText().trim().isEmpty())
+        {
+            txtStreetAddress.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+           
+        }
+        
+        if(txtMobileNo.getText().equals(null) || txtMobileNo.getText().trim().isEmpty())
+        {
+            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtMobileNo.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus=false;
+        }
+        if(!txtMobileNo.getText().equals(null) && !txtMobileNo.getText().trim().isEmpty())
+        {
+            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        return emptyValidationStatus;
+    }
+    
+    private void CBoxCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBoxCityActionPerformed
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SystemCreatePatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SystemCreatePatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SystemCreatePatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SystemCreatePatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SystemCreatePatient().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBoxCity;
+    private javax.swing.JComboBox<String> CBoxCommunity;
     private javax.swing.JComboBox<String> CBoxGender;
+    private javax.swing.JComboBox<String> CBoxState;
     private javax.swing.JButton btnSave;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblCity;
-    private javax.swing.JLabel lblCommunity;
     private javax.swing.JLabel lblContactInformation;
     private javax.swing.JLabel lblCreateNewPatient;
     private javax.swing.JLabel lblEmail;
@@ -356,15 +586,36 @@ public class SystemCreatePatient extends javax.swing.JFrame {
     private javax.swing.JLabel lblStreet;
     private javax.swing.JLabel lblWeight;
     private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHeight;
     private javax.swing.JTextField txtHouseNo;
     private javax.swing.JTextField txtMobileNo;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtState;
     private javax.swing.JTextField txtStreetAddress;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
+
+    private void initCityCmbx() {
+       CBoxCity.removeAllItems();
+       int count = 0;
+        City[] cities = City.values();
+        for (City city_ : cities) {
+            CBoxCity.addItem(cities[count++].toString());
+        }
+       initCommunityCmbx();
+    }
+
+
+    private void initCommunityCmbx() {
+        CBoxCommunity.removeAllItems();
+        int count = 0;
+        var selectedCity=CBoxCity.getSelectedItem().toString();
+        City city=City.valueOf(selectedCity);
+        Community community=new Community();
+        community.setLstCommunity();
+        String[] communities=community.getLstCommunity().get(city);
+            for (String community_ : communities) {
+                CBoxCommunity.addItem(communities[count++]);
+            }
+    }
 }

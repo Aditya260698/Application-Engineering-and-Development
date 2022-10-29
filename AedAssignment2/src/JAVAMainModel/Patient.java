@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author adity
  */
-class Patient extends Person {
+public class Patient extends Person {
     private int patientId;
     private float height;
     private float weight;

@@ -2,9 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UI;
+package UserInterface.UserLogin;
 
-import JAVAMainModel.UserRoles;
+import UserInterface.CommunityWorkArea.CommunityJFrame;
+import UserInterface.HospitalWorkArea.HospitalJFrame;
+import UserInterface.PatientsWorkArea.PatientJFrame;
+import UserInterface.DoctorWorkArea.DoctorJFrame;
+import UserInterface.SystemWorkArea.SystemJFrame;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import JAVAMainModel.*;
 
 /**
  *
@@ -35,8 +43,8 @@ public class LoginJPanel extends javax.swing.JPanel {
         UsernameLbl = new javax.swing.JLabel();
         UsernameTxtField = new javax.swing.JTextField();
         PasswordLbl = new javax.swing.JLabel();
-        PasswordTxtField = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         Title.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -68,12 +76,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         PasswordLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PasswordLbl.setText("Password");
 
-        PasswordTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordTxtFieldActionPerformed(evt);
-            }
-        });
-
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +103,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(RoleSelectorCB, 0, 239, Short.MAX_VALUE)
                             .addComponent(UsernameTxtField)
-                            .addComponent(PasswordTxtField))
+                            .addComponent(txtPassword))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -124,9 +126,11 @@ public class LoginJPanel extends javax.swing.JPanel {
                     .addComponent(UsernameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PasswordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PasswordTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtPassword)
+                        .addGap(3, 3, 3)))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
                 .addGap(0, 273, Short.MAX_VALUE))
@@ -141,33 +145,121 @@ public class LoginJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_UsernameTxtFieldActionPerformed
 
-    private void PasswordTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordTxtFieldActionPerformed
-
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 
         UserRoles userRole = UserRoles.valueOf(RoleSelectorCB.getSelectedItem().toString());
         String username = UsernameTxtField.getText();
-        String password = new String(PasswordTxtField.);
+        String password = new String(txtPassword.getPassword());
         Boolean loginStatus = false;
+        
+        try{
+            
+            if((username != null && !username.trim().isEmpty()) && (password != null && !password.trim().isEmpty())){
+
+                if(userRole.equals(UserRoles.System_Admin)){        
+                    if(username.equals("s") && password.equals("s")){              
+                        reset();
+                        loginStatus = true;
+                        JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);
+                        mainFrame.dispose();
+                        SystemJFrame systemFrame = new SystemJFrame(username);             
+                        systemFrame.main(null);
+                    }
+                    else{
+                        loginStatus = false;
+                    } 
+                }
+
+                if(userRole.equals(UserRoles.Community_Admin)){        
+                    if(username.equals("c") && password.equals("c")){              
+                        reset();
+                        loginStatus = true;
+                        JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);
+                        mainFrame.dispose();
+                        CommunityJFrame communityFrame = new CommunityJFrame(username);             
+                        communityFrame.main(null);
+                    }
+                    else{
+                        loginStatus = false;
+                    } 
+                }
+
+                if(userRole.equals(UserRoles.Hospital_Admin)){        
+                    if(username.equals("h") && password.equals("h")){              
+                        reset();
+                        loginStatus = true;
+                        JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);
+                        mainFrame.dispose();
+                        HospitalJFrame hospitalFrame = new HospitalJFrame(username);             
+                        hospitalFrame.main(null);
+                    }
+                    else{
+                        loginStatus = false;
+                    } 
+                }
+
+                if(userRole.equals(UserRoles.Doctor)){
+                    if(! username.equals("") && password.equals("")){
+                        if(username.equals("d") && password.equals("d")){              
+                            reset();
+                            loginStatus = true;
+                            JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);
+                            mainFrame.dispose();
+                            DoctorJFrame doctorFrame = new DoctorJFrame(username);             
+                            doctorFrame.main(null);
+                        }
+                        else{
+                             loginStatus = false;
+                        }
+                    }
+                }
+
+                if(userRole.equals(UserRoles.Patient)){
+                    if(! username.equals("") && password.equals("")){
+                        if(username.equals("p") && password.equals("p")){              
+                            reset();
+                            loginStatus = true;
+                            JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);
+                            mainFrame.dispose();
+                            PatientJFrame patientFrame = new PatientJFrame(username);             
+                            patientFrame.main(null);
+                        }
+                        else{
+                             loginStatus = false;
+                        }
+                    }
+                }
+            }
+
+            if(loginStatus == false){
+                JOptionPane.showMessageDialog(this, "Please enter correct credentials!");
+                reset();
+            }
+
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please try Again");
+            reset();
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
-    private void reset() {
-        UsernameTxtField.setText(null);
-        PasswordTxtField.setText(null);          
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LoginPage;
     private javax.swing.JLabel PasswordLbl;
-    private javax.swing.JTextField PasswordTxtField;
     private javax.swing.JLabel RoleSelect;
     private javax.swing.JComboBox<String> RoleSelectorCB;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel UsernameLbl;
     private javax.swing.JTextField UsernameTxtField;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+        UsernameTxtField.setText(null);
+        txtPassword.setText(null);
+    }
 }

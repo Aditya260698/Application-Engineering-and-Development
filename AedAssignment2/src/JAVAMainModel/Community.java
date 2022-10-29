@@ -13,6 +13,7 @@ import java.util.Map;
  * @author adity
  */
 public class Community {
+    
     EnumMap<City, String[]> LstCommunity = new EnumMap<>(City.class);
     Map<String, String> Community = new HashMap<>();
     
