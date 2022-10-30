@@ -48,12 +48,13 @@ public class PatientViewHospital extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHospitalList = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(191, 172, 224));
+        setBackground(new java.awt.Color(153, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("View Hospital");
+        lblTitle.setText("View Hospital Information");
 
+        lblSearchHospital.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         lblSearchHospital.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblSearchHospital.setText("Search Hospital by Name:");
 
@@ -63,6 +64,7 @@ public class PatientViewHospital extends javax.swing.JPanel {
             }
         });
 
+        btnSearchHospital.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchHospital.setText("Search");
 
         tblHospitalList.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,8 +106,8 @@ public class PatientViewHospital extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblSearchHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)

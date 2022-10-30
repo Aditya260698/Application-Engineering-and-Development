@@ -76,11 +76,11 @@ public class SystemUpdateEncounter extends javax.swing.JPanel {
         txtDoctorId = new javax.swing.JTextField();
         btnSearchDoctor = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(191, 172, 224));
+        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Update Encounter");
+        lblTitle.setText("Update Encounter ");
 
         lblDate.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblDate.setText("Date :");
@@ -125,6 +125,7 @@ public class SystemUpdateEncounter extends javax.swing.JPanel {
             }
         });
 
+        btnUpdateEncounter.setBackground(new java.awt.Color(102, 255, 102));
         btnUpdateEncounter.setText("Update Encounter");
         btnUpdateEncounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +133,7 @@ public class SystemUpdateEncounter extends javax.swing.JPanel {
             }
         });
 
+        lblSearchEncounter.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         lblSearchEncounter.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblSearchEncounter.setText("Search Encounter by ID:");
 
@@ -141,6 +143,7 @@ public class SystemUpdateEncounter extends javax.swing.JPanel {
             }
         });
 
+        btnSearchEncounter.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchEncounter.setText("Search");
         btnSearchEncounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +161,7 @@ public class SystemUpdateEncounter extends javax.swing.JPanel {
             }
         });
 
+        btnSearchPatient1.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchPatient1.setText("Search Patient");
         btnSearchPatient1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +179,7 @@ public class SystemUpdateEncounter extends javax.swing.JPanel {
             }
         });
 
+        btnSearchDoctor.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchDoctor.setText("Search Doctor");
         btnSearchDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,8 +236,8 @@ public class SystemUpdateEncounter extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblSearchEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -47,6 +47,9 @@ public class SystemViewPatient extends javax.swing.JPanel {
         txtSearchPatient = new javax.swing.JTextField();
         lblSearchPatient = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 255, 255));
+
+        btnDelete.setBackground(new java.awt.Color(255, 0, 0));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,10 +78,11 @@ public class SystemViewPatient extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblPatientList);
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("View Patient");
+        lblTitle.setText("View Patient Information");
 
+        btnSearchPatient.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchPatient.setText("Search");
         btnSearchPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +96,7 @@ public class SystemViewPatient extends javax.swing.JPanel {
             }
         });
 
+        lblSearchPatient.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         lblSearchPatient.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblSearchPatient.setText("Search Patient by Name:");
 

@@ -50,11 +50,11 @@ public class SystemViewDoctor extends javax.swing.JPanel {
         txtSearchDoctor = new javax.swing.JTextField();
         btnSearchDoctor = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(191, 172, 224));
+        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("View Doctors");
+        lblTitle.setText("View Doctor Information");
 
         tblDoctorList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,6 +77,7 @@ public class SystemViewDoctor extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblDoctorList);
 
+        btnDelete.setBackground(new java.awt.Color(255, 51, 51));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +85,7 @@ public class SystemViewDoctor extends javax.swing.JPanel {
             }
         });
 
+        lblSearchDoctor.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         lblSearchDoctor.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblSearchDoctor.setText("Search Doctor by Name :");
 
@@ -93,6 +95,7 @@ public class SystemViewDoctor extends javax.swing.JPanel {
             }
         });
 
+        btnSearchDoctor.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchDoctor.setText("Search");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

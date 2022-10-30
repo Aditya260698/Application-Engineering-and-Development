@@ -42,6 +42,9 @@ public class DoctorViewEncounter extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         txtSearchEncounters = new javax.swing.JTextField();
         lblSearchEnctounter = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
@@ -50,7 +53,13 @@ public class DoctorViewEncounter extends javax.swing.JPanel {
         tblEncountersList = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(191, 172, 224));
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setBackground(new java.awt.Color(153, 255, 255));
 
         txtSearchEncounters.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,10 +70,11 @@ public class DoctorViewEncounter extends javax.swing.JPanel {
         lblSearchEnctounter.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblSearchEnctounter.setText("Search Encounter By Patient Id :");
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("View Encounters");
 
+        btnSearchEncounter.setBackground(new java.awt.Color(51, 255, 0));
         btnSearchEncounter.setText("Search");
         btnSearchEncounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +103,7 @@ public class DoctorViewEncounter extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblEncountersList);
 
+        btnDelete.setBackground(new java.awt.Color(255, 0, 0));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +185,9 @@ public class DoctorViewEncounter extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearchEncounter;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSearchEnctounter;
     private javax.swing.JLabel lblTitle;

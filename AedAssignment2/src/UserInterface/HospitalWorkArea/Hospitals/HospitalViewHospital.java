@@ -47,12 +47,13 @@ public class HospitalViewHospital extends javax.swing.JPanel {
         tblHospitalList = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(191, 172, 224));
+        setBackground(new java.awt.Color(153, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("View Hospital");
 
+        lblSearchHospital.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         lblSearchHospital.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblSearchHospital.setText("Search Hospital by Name:");
 
@@ -62,6 +63,7 @@ public class HospitalViewHospital extends javax.swing.JPanel {
             }
         });
 
+        btnSearchHospital.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchHospital.setText("Search");
 
         tblHospitalList.setModel(new javax.swing.table.DefaultTableModel(
@@ -85,6 +87,7 @@ public class HospitalViewHospital extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblHospitalList);
 
+        btnDelete.setBackground(new java.awt.Color(255, 51, 51));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,8 +117,8 @@ public class HospitalViewHospital extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(lblTitle)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblSearchHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
