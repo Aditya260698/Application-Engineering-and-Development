@@ -1,24 +1,43 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.SystemWorkArea.Encounter;
 
-import UserInterface.SystemWorkArea.Hospital.*;
-import UserInterface.SystemWorkArea.Patient.*;
-
-
+import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import model.DoctorDirectory;
+import model.Encounter;
+import model.EncounterHistory;
+import model.Patient;
+import model.PatientDirectory;
+import model.VitalSigns;
 /**
  *
- * @author adity
+ * @author Aditya
  */
-public class SystemCreateEncounter extends javax.swing.JFrame {
+public class SystemCreateEncounter extends javax.swing.JPanel {
 
     /**
-     * Creates new form SystemCreateDoctor
+     * Creates new form SystemCreateEncounter
      */
-    public SystemCreateEncounter() {
+    PatientDirectory patientDirectory;
+    DoctorDirectory doctorDirectory;
+    boolean validationCheck=true;
+    
+    public SystemCreateEncounter(PatientDirectory patientDirectory,DoctorDirectory doctorDirectory) {
         initComponents();
+        this.patientDirectory = patientDirectory;
+        this.doctorDirectory = doctorDirectory;
     }
 
     /**
@@ -30,177 +49,573 @@ public class SystemCreateEncounter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblCreateDoctorProfile = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
-        lblMobileNo = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        lblAge = new javax.swing.JLabel();
-        lblSex = new javax.swing.JLabel();
-        lblSpecialization = new javax.swing.JLabel();
-        lblPracticeStartDate = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
-        txtHospitalName = new javax.swing.JTextField();
-        txtPatientName = new javax.swing.JTextField();
-        txtDoctorName = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblDate = new javax.swing.JLabel();
+        lblHospitalName = new javax.swing.JLabel();
+        txtHospName = new javax.swing.JTextField();
+        lblPatientId = new javax.swing.JLabel();
+        txtPatientId = new javax.swing.JTextField();
+        lblDoctorId = new javax.swing.JLabel();
+        txtDoctorId = new javax.swing.JTextField();
+        lblBloodPressure = new javax.swing.JLabel();
         txtBloodPressure = new javax.swing.JTextField();
+        lblPulse = new javax.swing.JLabel();
         txtPulse = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
+        lblWeight = new javax.swing.JLabel();
         txtTemperature = new javax.swing.JTextField();
+        btnCreateEncounter = new javax.swing.JButton();
+        btnSearchDoctor = new javax.swing.JButton();
+        btnSearchPatient1 = new javax.swing.JButton();
+        txtEncounterDate = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(102, 255, 255));
-        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(191, 172, 224));
 
-        lblCreateDoctorProfile.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        lblCreateDoctorProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCreateDoctorProfile.setText("CREATE ENCOUNTER");
+        jPanel2.setBackground(new java.awt.Color(191, 172, 224));
 
-        lblName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblName.setText("Date");
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Create Encounter");
 
-        lblMobileNo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMobileNo.setText("Hospital Name");
-        lblMobileNo.setToolTipText("");
+        lblDate.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblDate.setText("Date :");
 
-        lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblEmail.setText("Patient Name");
+        lblHospitalName.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblHospitalName.setText("Hospital Name :");
 
-        lblAge.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAge.setText("Doctor Name");
+        txtHospName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHospNameActionPerformed(evt);
+            }
+        });
 
-        lblSex.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSex.setText("Blood Pressure");
+        lblPatientId.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblPatientId.setText("Patient ID :");
 
-        lblSpecialization.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSpecialization.setText("Temperature");
+        txtPatientId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPatientIdActionPerformed(evt);
+            }
+        });
 
-        lblPracticeStartDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPracticeStartDate.setText("Pulse");
+        lblDoctorId.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblDoctorId.setText("Doctor ID :");
 
-        btnSave.setText("Save");
+        txtDoctorId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDoctorIdActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        lblBloodPressure.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblBloodPressure.setText("Blood Pressure :");
+
+        txtBloodPressure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBloodPressureActionPerformed(evt);
+            }
+        });
+
+        lblPulse.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblPulse.setText("Pulse :");
+
+        txtPulse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPulseActionPerformed(evt);
+            }
+        });
+
+        lblWeight.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblWeight.setText("Temperature :");
+
+        txtTemperature.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTemperatureActionPerformed(evt);
+            }
+        });
+
+        btnCreateEncounter.setText("Create Encounter");
+        btnCreateEncounter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateEncounterActionPerformed(evt);
+            }
+        });
+
+        btnSearchDoctor.setText("Search Doctor");
+        btnSearchDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchDoctorActionPerformed(evt);
+            }
+        });
+
+        btnSearchPatient1.setText("Search Patient");
+        btnSearchPatient1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchPatient1ActionPerformed(evt);
+            }
+        });
+
+        txtEncounterDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblDoctorId, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblHospitalName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblPatientId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtHospName, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addComponent(txtBloodPressure, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtDoctorId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                    .addComponent(txtPatientId, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSearchDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSearchPatient1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtEncounterDate)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblPulse, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPulse, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCreateEncounter)
+                                    .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEncounterDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHospName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPatientId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPatientId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnSearchPatient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblDoctorId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDoctorId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearchDoctor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPulse, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPulse, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCreateEncounter)
+                .addGap(98, 98, 98))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 7, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 7, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 521, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblCreateDoctorProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblSpecialization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblMobileNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblPracticeStartDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                    .addComponent(txtHospitalName)
-                    .addComponent(txtPatientName)
-                    .addComponent(txtDoctorName)
-                    .addComponent(txtBloodPressure)
-                    .addComponent(txtPulse)
-                    .addComponent(txtTemperature))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(312, Short.MAX_VALUE)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(306, 306, 306))
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCreateDoctorProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMobileNo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDoctorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSex, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPracticeStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPulse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnSave)
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addGap(0, 521, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void txtHospNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHospNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHospNameActionPerformed
+
+    private void txtPatientIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatientIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPatientIdActionPerformed
+
+    private void txtDoctorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoctorIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDoctorIdActionPerformed
+
+    private void txtBloodPressureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBloodPressureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBloodPressureActionPerformed
+
+    private void txtPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPulseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPulseActionPerformed
+
+    private void txtTemperatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTemperatureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTemperatureActionPerformed
+
+    private void btnCreateEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEncounterActionPerformed
+        // TODO add your handling code here:
+
+        try{
+
+            if(checkForNullorEmptyValue()){
+
+                if(RegexValidation()){
+                    VitalSigns vitalSigns=new VitalSigns();
+                    vitalSigns.setPulse(Integer.parseInt(txtPulse.getText()));
+                    vitalSigns.setBloodPressure(Integer.parseInt(txtBloodPressure.getText()));
+                    vitalSigns.setTemperature(Integer.parseInt(txtTemperature.getText()));
+                    vitalSigns.setDateOfVitals(new Date());
+
+                    Encounter encounter=new Encounter();
+                    Map<Date,VitalSigns> patientEncounter=new HashMap<>();
+
+                    String encDate = txtEncounterDate.getText();
+
+                    Date encounterDate;
+                    try {
+                        encounterDate = new SimpleDateFormat("MM/dd/yyyy").parse(encDate);
+                        patientEncounter.put(encounterDate,vitalSigns);
+
+                    } catch (ParseException ex) {
+                        Logger.getLogger(SystemCreateEncounter.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    encounter.setPatientEncounter(patientEncounter);
+
+                    Random random = new Random();
+                    int encounterID =random.nextInt((9999 - 100) + 1) + 10;
+                    encounter.setEncounterId(encounterID);
+
+                    if(patientDirectory.getPatients().size() > 0){
+
+                        boolean patientPresent=false;
+                        for(Patient patient:patientDirectory.getPatients())
+                        {
+                            if(patient.getPatientHistoryMap().containsKey(Integer.parseInt(txtPatientId.getText())))
+                            {
+                                patientPresent=true;
+                                var a = patient.getPatientHistoryMap().get(Integer.parseInt(txtPatientId.getText()));
+                                a.setPatientEncounterHistory(encounter);
+
+                                System.out.println(a.getPatientEncounterHistory());
+                                patientDirectory.getPatients().remove(a);
+                                patientDirectory.addNewPatient(patient);
+                            }
+                        }
+
+                        if(!patientPresent)
+                        {
+                            EncounterHistory patientHistory=new EncounterHistory();
+                            patientHistory.setPatientEncounterHistory(encounter);
+                            Map<Integer,EncounterHistory> newPatientHistory=new HashMap<>();
+                            newPatientHistory.put(Integer.parseInt(txtPatientId.getText()),patientHistory);
+                            Patient patient=patientDirectory.getPatientById(Integer.parseInt(txtPatientId.getText()));
+                            patient.setPatientHistoryMap(newPatientHistory);
+                            patientDirectory.addNewPatient(patient);
+                        }
+
+                    }
+                    else
+                    {
+                        EncounterHistory patientHistory=new EncounterHistory();
+                        patientHistory.setPatientEncounterHistory(encounter);
+                        Map<Integer,EncounterHistory> newPatientHistory=new HashMap<>();
+                        newPatientHistory.put(Integer.parseInt(txtPatientId.getText()),patientHistory);
+                        Patient patient=patientDirectory.getPatientById(Integer.parseInt(txtPatientId.getText()));
+                        patient.setPatientHistoryMap(newPatientHistory);
+                        patientDirectory.addNewPatient(patient);
+                    }
+
+                    JOptionPane.showMessageDialog(this,"Encounter Made Successfully");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Validation Failed .Please hover over red field to know more");
+                    validationCheck=true;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateEncounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateEncounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateEncounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateEncounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SystemCreateEncounter().setVisible(true);
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Validation Failed .Please hover over red field to know more");
+                validationCheck=true;
             }
-        });
+
+        }
+        catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(this,"Error Occured.Encounter Could not be made");
+        }
+    }//GEN-LAST:event_btnCreateEncounterActionPerformed
+
+    private void btnSearchDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDoctorActionPerformed
+        // TODO add your handling code here:
+
+        if(txtDoctorId.getText().trim().isEmpty()|| txtDoctorId.getText()==null)
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter a valid Doctor Id");
+            return;
+        }
+        boolean doctorAvailable=false;
+        for(var doctor : doctorDirectory.getDoctors())
+        {
+            if(doctor.getDoctorId()==Integer.parseInt(txtDoctorId.getText()))
+            {
+                doctorAvailable=true;
+            }
+        }
+        if(!doctorAvailable)
+        {
+            JOptionPane.showMessageDialog(this,"Doctor does not exist ."
+                + "Please register before making an Appointment");
+        }
+        if(doctorAvailable)
+        {
+            JOptionPane.showMessageDialog(this,"Doctor exist .");
+        }
+
+    }//GEN-LAST:event_btnSearchDoctorActionPerformed
+
+    private void btnSearchPatient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPatient1ActionPerformed
+        // TODO add your handling code here:
+
+        if(txtPatientId.getText().trim().isEmpty()|| txtPatientId.getText()==null)
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter a valid Patient Id");
+            return;
+        }
+        boolean patientAvailable=false;
+        for(var patient : patientDirectory.getPatients())
+        {
+            if(patient.getPatientId()==Integer.parseInt(txtPatientId.getText()))
+            {
+                patientAvailable=true;
+            }
+        }
+        if(!patientAvailable)
+        {
+            JOptionPane.showMessageDialog(this,"Patient does not exist ."
+                + "Please register before making an Appointment");
+        }
+        if(patientAvailable)
+        {
+            JOptionPane.showMessageDialog(this,"Patient exist .");
+        }
+    }//GEN-LAST:event_btnSearchPatient1ActionPerformed
+
+    private boolean RegexValidation() throws ParseException {
+        
+        if(!txtEncounterDate.getText().matches("^(1[0-2]|0[1-9])/(3[01]" + "|[12][0-9]|0[1-9])/[0-9]{4}$")){
+            txtEncounterDate.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtEncounterDate.setToolTipText("Please enter date in format mm/dd/yyyy");
+            validationCheck=false;
+        }
+        
+        if(txtEncounterDate.getText().matches("^(1[0-2]|0[1-9])/(3[01]" + "|[12][0-9]|0[1-9])/[0-9]{4}$"))
+        {
+            txtEncounterDate.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(!txtBloodPressure.getText().matches("\\b\\d+\\b"))
+        {
+            txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtBloodPressure.setToolTipText("Pleae enter a valid Blood Pressure");
+            validationCheck=false;
+        }
+        if(txtBloodPressure.getText().matches("\\b\\d+\\b"))
+        {
+            txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        if(!txtPulse.getText().matches("\\b\\d+\\b"))
+        {
+            txtPulse.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtPulse.setToolTipText("Pleae enter a valid Pulse Rate");
+            validationCheck=false;
+        }
+        if(txtPulse.getText().matches("\\b\\d+\\b"))
+        {
+            txtPulse.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(!txtTemperature.getText().matches("^(8[0-9]|9[0-9]|10[0-9]|110)$"))
+        {
+            txtTemperature.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtTemperature.setToolTipText("Pleae enter a valid body temperature");
+            validationCheck=false;
+        }
+        if(txtTemperature.getText().matches("^(8[0-9]|9[0-9]|10[0-9]|110)$"))
+        {
+            txtTemperature.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        return validationCheck;
+    }
+    
+    private boolean checkForNullorEmptyValue() {
+       if(txtEncounterDate.getText()==(null))
+       {
+           txtEncounterDate.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtEncounterDate.setToolTipText("Field Cannot be left empty");
+            validationCheck=false;
+       }
+       if(txtEncounterDate.getText()!=(null))
+       {
+           txtEncounterDate.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+       }
+       
+       if(txtHospName.getText()==(null))
+       {
+           txtHospName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHospName.setToolTipText("Field Cannot be left empty");
+            validationCheck=false;
+       }
+       if(txtHospName.getText()!=(null))
+       {
+           txtHospName.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+       }
+       
+       if(txtPatientId.getText().equals(null) || txtPatientId.getText().isEmpty())
+       {
+           txtPatientId.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtPatientId.setToolTipText("Field Cannot be left empty");
+            validationCheck=false;
+       }
+       if(!txtPatientId.getText().equals(null) && !txtPatientId.getText().isEmpty())
+       {
+           txtPatientId.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+       }
+       
+       if(txtDoctorId.getText().equals(null) || txtDoctorId.getText().isEmpty())
+       {
+           txtDoctorId.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtDoctorId.setToolTipText("Field Cannot be left empty");
+            validationCheck=false;
+       }
+       if(!txtDoctorId.getText().equals(null) && !txtDoctorId.getText().isEmpty())
+       {
+           txtDoctorId.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+       }
+   
+       
+       if(txtPulse.getText().equals(null) || txtPulse.getText().isEmpty())
+       {
+           txtPulse.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtPulse.setToolTipText("Field Cannot be left empty");
+            validationCheck=false;
+       }
+       if(!txtPulse.getText().equals(null) && !txtPulse.getText().isEmpty())
+       {
+           txtPulse.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+           
+       }
+       
+       if(txtBloodPressure.getText().equals(null) || txtBloodPressure.getText().isEmpty())
+       {
+           txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtBloodPressure.setToolTipText("Field Cannot be left empty");
+            validationCheck=false;
+       }
+       if(!txtBloodPressure.getText().equals(null) && !txtBloodPressure.getText().isEmpty())
+       {
+           txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+            
+       }
+       
+       if(txtTemperature.getText().equals(null) || txtTemperature.getText().isEmpty())
+       {
+           txtTemperature.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtTemperature.setToolTipText("Field Cannot be left empty");
+            validationCheck=false;
+       }
+       if(!txtTemperature.getText().equals(null) && !txtTemperature.getText().isEmpty())
+       {
+           txtTemperature.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+            
+       }
+       
+       return validationCheck;
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSave;
-    private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblCreateDoctorProfile;
-    private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblMobileNo;
-    private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPracticeStartDate;
-    private javax.swing.JLabel lblSex;
-    private javax.swing.JLabel lblSpecialization;
+    private javax.swing.JButton btnCreateEncounter;
+    private javax.swing.JButton btnSearchDoctor;
+    private javax.swing.JButton btnSearchPatient1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblBloodPressure;
+    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDoctorId;
+    private javax.swing.JLabel lblHospitalName;
+    private javax.swing.JLabel lblPatientId;
+    private javax.swing.JLabel lblPulse;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblWeight;
     private javax.swing.JTextField txtBloodPressure;
-    private javax.swing.JTextField txtDate;
-    private javax.swing.JTextField txtDoctorName;
-    private javax.swing.JTextField txtHospitalName;
-    private javax.swing.JTextField txtPatientName;
+    private javax.swing.JTextField txtDoctorId;
+    private javax.swing.JFormattedTextField txtEncounterDate;
+    private javax.swing.JTextField txtHospName;
+    private javax.swing.JTextField txtPatientId;
     private javax.swing.JTextField txtPulse;
     private javax.swing.JTextField txtTemperature;
     // End of variables declaration//GEN-END:variables

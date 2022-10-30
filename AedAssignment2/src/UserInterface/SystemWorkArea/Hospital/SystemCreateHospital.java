@@ -1,25 +1,37 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.SystemWorkArea.Hospital;
 
-import UserInterface.SystemWorkArea.Encounter.*;
-import UserInterface.SystemWorkArea.Hospital.*;
-import UserInterface.SystemWorkArea.Patient.*;
-
-
+import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import model.City;
+import model.Community;
+import model.Hospital;
+import model.HospitalDirectory;
+import userinterface.SystemWorkArea.Patient.*;
 /**
  *
- * @author adity
+ * @author Aditya
  */
-public class SystemCreateHospital extends javax.swing.JFrame {
+public class SystemCreateHospital extends javax.swing.JPanel {
 
     /**
-     * Creates new form SystemCreateDoctor
+     * Creates new form SystemCreateHospital
      */
-    public SystemCreateHospital() {
+    HospitalDirectory hospitalDirectory;
+    boolean validationCheck = true;
+    boolean emptyValidationStatus = true;
+            
+    public SystemCreateHospital(HospitalDirectory hospitalDirectory) {
         initComponents();
+        initCityCmbx();
+        this.hospitalDirectory = hospitalDirectory;
     }
 
     /**
@@ -31,145 +43,339 @@ public class SystemCreateHospital extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblCreateDoctorProfile = new javax.swing.JLabel();
-        lblHospitalName = new javax.swing.JLabel();
-        lblHospitalAddress = new javax.swing.JLabel();
-        lblContactNumber = new javax.swing.JLabel();
-        lblCommunity = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblHospName = new javax.swing.JLabel();
         txtHospitalName = new javax.swing.JTextField();
-        txtHospitalAddress = new javax.swing.JTextField();
-        txtContactNumber = new javax.swing.JTextField();
-        txtCommunity = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
+        lblHospitalAddress = new javax.swing.JLabel();
+        txtHospAddress = new javax.swing.JTextField();
+        lblContactNo = new javax.swing.JLabel();
+        txtContactNo = new javax.swing.JTextField();
+        lblCommunity = new javax.swing.JLabel();
+        btnCreateHospital = new javax.swing.JButton();
+        lblCity = new javax.swing.JLabel();
+        comboCity = new javax.swing.JComboBox<>();
+        comboCommunity = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(102, 255, 255));
-        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(191, 172, 224));
 
-        lblCreateDoctorProfile.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        lblCreateDoctorProfile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCreateDoctorProfile.setText("CREATE HOSPITAL");
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Create Hospital");
 
-        lblHospitalName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblHospitalName.setText("Hospital Name");
-        lblHospitalName.setToolTipText("");
+        lblHospName.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblHospName.setText("Hospital Name :");
 
-        lblHospitalAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblHospitalAddress.setText("Hospital Address");
+        txtHospitalName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHospitalNameActionPerformed(evt);
+            }
+        });
 
-        lblContactNumber.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblContactNumber.setText("Contact Number");
+        lblHospitalAddress.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblHospitalAddress.setText("Hospital Address :");
 
-        lblCommunity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCommunity.setText("Community");
+        txtHospAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHospAddressActionPerformed(evt);
+            }
+        });
 
-        btnSave.setText("Save");
+        lblContactNo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblContactNo.setText("Contact Number :");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        txtContactNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContactNoActionPerformed(evt);
+            }
+        });
+
+        lblCommunity.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblCommunity.setText("Community :");
+
+        btnCreateHospital.setText("Create Hospital");
+        btnCreateHospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateHospitalActionPerformed(evt);
+            }
+        });
+
+        lblCity.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblCity.setText("City :");
+
+        comboCity.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCityItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblHospitalAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblHospName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblContactNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtHospitalName, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addComponent(txtHospAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addComponent(txtContactNo, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addComponent(btnCreateHospital)
+                            .addComponent(comboCommunity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboCity, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblHospName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtHospitalName, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHospAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblContactNo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContactNo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(comboCity))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(comboCommunity))
+                .addGap(18, 18, 18)
+                .addComponent(btnCreateHospital)
+                .addContainerGap(184, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblCreateDoctorProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblContactNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHospitalAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHospitalName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtHospitalName, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                            .addComponent(txtHospitalAddress)
-                            .addComponent(txtContactNumber)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(312, Short.MAX_VALUE)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(306, 306, 306))
+            .addGap(0, 744, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCreateDoctorProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89)
-                .addComponent(btnSave)
-                .addContainerGap(28, Short.MAX_VALUE))
+            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void txtHospitalNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHospitalNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHospitalNameActionPerformed
+
+    private void txtHospAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHospAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHospAddressActionPerformed
+
+    private void txtContactNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContactNoActionPerformed
+
+    private void btnCreateHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateHospitalActionPerformed
+        // TODO add your handling code here:
+
+        try{
+
+            if(EmpytyFieldValidation()){
+
+                if(RegexValidation()){
+
+                    Random random=new Random();
+                    int hospitalId = random.nextInt((9999 - 100) + 1) + 10;
+                    String hospitalName = txtHospitalName.getText();
+                    String hospitalAddress = txtHospAddress.getText();
+                    long contactNo = Long.parseLong(txtContactNo.getText());
+                    String city = comboCity.getSelectedItem().toString();
+                    String community = comboCommunity.getSelectedItem().toString();
+
+                    Hospital hospital = new Hospital();
+                    hospital.setHospitalID(hospitalId);
+                    hospital.setHospitalName(hospitalName);
+                    hospital.setHospitalAddress(hospitalAddress);
+                    hospital.setContactNumber(contactNo);
+
+                    Map<String, String> communityMap = new HashMap<>();
+                    communityMap.put(city,community);
+
+                    Community c = new Community();
+                    c.setCommunity(communityMap);
+
+                    hospital.setCommunity(c);
+                    hospitalDirectory.setHospitals(hospital);
+
+                    JOptionPane.showMessageDialog(this,"Hospital Registered Successfully. New Hospital ID Id is:"+hospitalId+",Please save this Hospital Id for furture appointments.");
+                }
+
+                else{
+                    JOptionPane.showMessageDialog(this,"Some Error in entered data.Please check over the red fields to know more.");
+                    validationCheck=true;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateHospital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateHospital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateHospital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SystemCreateHospital.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+            else{
+                JOptionPane.showMessageDialog(this,"Some Error in entered data. Please check over the red fields to know more.");
+                emptyValidationStatus=true;
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SystemCreateHospital().setVisible(true);
             }
-        });
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Patient not registered, Try again");
+            System.out.println(e.toString());
+            emptyValidationStatus=true;
+            if(hospitalDirectory.getHospitals().size()>0){
+                hospitalDirectory.getHospitals().remove(hospitalDirectory.getHospitals().size() - 1);
+            }
+        }
+
+    }//GEN-LAST:event_btnCreateHospitalActionPerformed
+
+    private void comboCityItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCityItemStateChanged
+        // TODO add your handling code here:
+        initCommunityCmbx();
+    }//GEN-LAST:event_comboCityItemStateChanged
+
+    private void initCommunityCmbx() {
+        comboCommunity.removeAllItems();
+        int count = 0;
+        var selectedCity=comboCity.getSelectedItem().toString();
+        City city=City.valueOf(selectedCity);
+        Community community=new Community();
+        community.setLstCommunity();
+        String[] communities=community.getLstCommunity().get(city);
+            for (String community_ : communities) {
+                comboCommunity.addItem(communities[count++]);
+            }
+    }
+    
+    private void initCityCmbx() {
+       comboCity.removeAllItems();
+       int count = 0;
+        City[] cities = City.values();
+        for (City city_ : cities) {
+            comboCity.addItem(cities[count++].toString());
+        }
+       initCommunityCmbx();
+    }
+    
+    private boolean RegexValidation() {
+        if(!txtHospitalName.getText().matches("^[a-zA-Z ]+$"))
+        {
+            txtHospitalName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHospitalName.setToolTipText("Please enter only characters and space.");
+            validationCheck=false;
+        }
+        
+        if(txtHospitalName.getText().matches("^[a-zA-Z ]+$"))
+        {
+            txtHospitalName.setBorder(BorderFactory.createLineBorder(Color.BLUE, 0));
+        }
+        
+//        if(!txtHospAddress.getText().matches("^[a-zA-Z ]+$"))
+//        {
+//            txtHospAddress.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+//            txtHospAddress.setToolTipText("Please enter only characters and space.");
+//            validationCheck=false;
+//        }
+//        
+//        if(txtHospAddress.getText().matches("^[a-zA-Z ]+$"))
+//        {
+//            txtHospAddress.setBorder(BorderFactory.createLineBorder(Color.BLUE, 0));
+//        }
+        
+        if(!txtContactNo.getText().matches("^[0-9]{10}$"))
+        {
+            txtContactNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtContactNo.setToolTipText("Please enter a 10 digit number");
+            validationCheck=false;
+        }
+        
+        if(txtContactNo.getText().matches("^[0-9]{10}$"))
+        {
+            txtContactNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        return validationCheck;
+    }
+    
+    private boolean EmpytyFieldValidation() {
+        if(txtHospitalName.getText().equals(null) || txtHospitalName.getText().trim().isEmpty() )
+        {
+            txtHospitalName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHospitalName.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+        if(!txtHospitalName.getText().equals(null) && !txtHospitalName.getText().trim().isEmpty() )
+        {
+            txtHospitalName.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(txtHospAddress.getText().equals(null) || txtHospAddress.getText().trim().isEmpty() )
+        {
+            txtHospAddress.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHospAddress.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus= false;
+        }
+        if(!txtHospAddress.getText().equals(null) && !txtHospAddress.getText().trim().isEmpty() )
+        {
+            txtHospAddress.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        if(txtContactNo.getText().equals(null) || txtContactNo.getText().trim().isEmpty())
+        {
+            txtContactNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtContactNo.setToolTipText("This Field Cannot be empty");
+            emptyValidationStatus=false;
+        }
+        if(!txtContactNo.getText().equals(null) && !txtContactNo.getText().trim().isEmpty())
+        {
+            txtContactNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+        }
+        
+        return emptyValidationStatus;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnCreateHospital;
+    private javax.swing.JComboBox<String> comboCity;
+    private javax.swing.JComboBox<String> comboCommunity;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCommunity;
-    private javax.swing.JLabel lblContactNumber;
-    private javax.swing.JLabel lblCreateDoctorProfile;
+    private javax.swing.JLabel lblContactNo;
+    private javax.swing.JLabel lblHospName;
     private javax.swing.JLabel lblHospitalAddress;
-    private javax.swing.JLabel lblHospitalName;
-    private javax.swing.JTextField txtCommunity;
-    private javax.swing.JTextField txtContactNumber;
-    private javax.swing.JTextField txtHospitalAddress;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtContactNo;
+    private javax.swing.JTextField txtHospAddress;
     private javax.swing.JTextField txtHospitalName;
     // End of variables declaration//GEN-END:variables
 }

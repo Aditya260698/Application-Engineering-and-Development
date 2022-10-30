@@ -1,36 +1,33 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.SystemWorkArea.Patient;
 
-import JAVAMainModel.PatientDirectory;
-import JAVAMainModel.PersonDirectory;
+import model.PatientDirectory;
+import model.PersonDirectory;
 import UserInterface.SystemWorkArea.Doctor.*;
 import UserInterface.SystemWorkArea.Patient.SystemCreatePatient;
 import UserInterface.SystemWorkArea.Patient.SystemUpdatePatient;
 import UserInterface.SystemWorkArea.Patient.SystemViewPatient;
 /**
  *
- * @author adity
+ * @author Aditya
  */
-public class SystemPatientWorkPanel extends javax.swing.JFrame {
+public class SystemPatientWorkPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SystemPatientWorkPanel
-     */
     PersonDirectory personDirectory;
     PatientDirectory patientDirectory;
     /**
      * Creates new form SystemPatient
      */
-    public SystemPatientWorkPanel() {
+    public SystemPatientWorkPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory) {
         initComponents();
-        personDirectory = new PersonDirectory();
-        patientDirectory=new PatientDirectory();
+        this.personDirectory = personDirectory;
+        this.patientDirectory = patientDirectory;
               
         SystemViewPatient systemViewPatient = new SystemViewPatient(patientDirectory,personDirectory);
-        jSplitPane1.setRightComponent(systemViewPatient );
+        splitPane.setRightComponent(systemViewPatient );
     }
 
     /**
@@ -42,121 +39,143 @@ public class SystemPatientWorkPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
+        splitPane = new javax.swing.JSplitPane();
+        controlPanel = new javax.swing.JPanel();
         btnViewPatient = new javax.swing.JButton();
         btnCreatePatient = new javax.swing.JButton();
         btnUpdatePatient = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        patientWorkArea = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1.setBackground(new java.awt.Color(160, 132, 202));
 
-        btnViewPatient.setText("ViewPatient");
+        splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        controlPanel.setBackground(new java.awt.Color(160, 132, 202));
+        controlPanel.setPreferredSize(new java.awt.Dimension(150, 609));
+        controlPanel.setVerifyInputWhenFocusTarget(false);
+
+        btnViewPatient.setText("View Patient");
         btnViewPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewPatientActionPerformed(evt);
             }
         });
 
-        btnCreatePatient.setText("CreatePatient");
+        btnCreatePatient.setText("Create Patient");
         btnCreatePatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreatePatientActionPerformed(evt);
             }
         });
 
-        btnUpdatePatient.setText("UpdatePatient");
+        btnUpdatePatient.setText("Update Patient");
         btnUpdatePatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdatePatientActionPerformed(evt);
             }
         });
 
+        javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
+        controlPanel.setLayout(controlPanelLayout);
+        controlPanelLayout.setHorizontalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addContainerGap(109, Short.MAX_VALUE)
+                .addComponent(btnViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(btnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(btnUpdatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        controlPanelLayout.setVerticalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        splitPane.setLeftComponent(controlPanel);
+
+        patientWorkArea.setBackground(new java.awt.Color(191, 172, 224));
+
+        javax.swing.GroupLayout patientWorkAreaLayout = new javax.swing.GroupLayout(patientWorkArea);
+        patientWorkArea.setLayout(patientWorkAreaLayout);
+        patientWorkAreaLayout.setHorizontalGroup(
+            patientWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
+        patientWorkAreaLayout.setVerticalGroup(
+            patientWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 553, Short.MAX_VALUE)
+        );
+
+        splitPane.setRightComponent(patientWorkArea);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUpdatePatient)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnViewPatient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCreatePatient, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(splitPane)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(btnViewPatient)
-                .addGap(88, 88, 88)
-                .addComponent(btnCreatePatient)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addComponent(btnUpdatePatient)
-                .addGap(72, 72, 72))
+            .addComponent(splitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
         );
 
-        jSplitPane1.setLeftComponent(jPanel1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
-        );
-
-        jSplitPane1.setRightComponent(jPanel2);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPatientActionPerformed
         // TODO add your handling code here:
         SystemViewPatient systemViewPatient = new SystemViewPatient(patientDirectory,personDirectory);
-        jSplitPane1.setRightComponent(systemViewPatient );
+        splitPane.setRightComponent(systemViewPatient );
     }//GEN-LAST:event_btnViewPatientActionPerformed
 
     private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
         // TODO add your handling code here:
         SystemCreatePatient systemCreatePatient = new SystemCreatePatient(personDirectory, patientDirectory);
-        jSplitPane1.setRightComponent(systemCreatePatient);
+        splitPane.setRightComponent(systemCreatePatient);
     }//GEN-LAST:event_btnCreatePatientActionPerformed
 
     private void btnUpdatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePatientActionPerformed
         // TODO add your handling code here:
         SystemUpdatePatient systemUpdatePatient = new SystemUpdatePatient(personDirectory,patientDirectory);
-        jSplitPane1.setRightComponent(systemUpdatePatient);
+        splitPane.setRightComponent(systemUpdatePatient);
     }//GEN-LAST:event_btnUpdatePatientActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreatePatient;
     private javax.swing.JButton btnUpdatePatient;
     private javax.swing.JButton btnViewPatient;
+    private javax.swing.JPanel controlPanel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel patientWorkArea;
+    private javax.swing.JSplitPane splitPane;
     // End of variables declaration//GEN-END:variables
 }

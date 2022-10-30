@@ -3,25 +3,42 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UserInterface.DoctorWorkArea;
+
 import UserInterface.SystemWorkArea.Doctor.SystemDoctorWorkPanel;
-import UserInterface.MainJFrame;
+import UserInterface.SystemWorkArea.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.DoctorDirectory;
+import model.HospitalDirectory;
+import model.PatientDirectory;
+import model.PersonDirectory;
+import UserInterface.DoctorWorkArea.Encounters.DoctorEncountersWorkPanel;
+import UserInterface.MainJFrame;
 
 /**
  *
- * @author adity
+ * @author Aditya
  */
 public class DoctorJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form DoctorJFrame
      */
-    public static String username;
     
-    public DoctorJFrame(String username) {
+    public static String username;
+    public static PersonDirectory personDirectory;
+    public static PatientDirectory patientDirectory;
+    public static DoctorDirectory doctorDirectory;
+    public static HospitalDirectory hospitalDirectory;
+    
+    public DoctorJFrame(String username,PersonDirectory personDirectory ,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, HospitalDirectory hospitalDirectory) {
         initComponents();
         this.username = username;
+        this.personDirectory = personDirectory;
+        this.patientDirectory = patientDirectory;
+        this.doctorDirectory = doctorDirectory;
+        this.hospitalDirectory = hospitalDirectory;
+        
         
         if(username == null){
             JOptionPane.showMessageDialog(this, "Please login to proceed");
@@ -30,8 +47,8 @@ public class DoctorJFrame extends javax.swing.JFrame {
             mainFrame.main(null);
         }
         
-        SystemDoctorWorkPanel systempatient = new SystemDoctorWorkPanel();
-        jSplitPane1.setRightComponent(systempatient);
+        DoctorViewPatient dvp = new DoctorViewPatient(patientDirectory, personDirectory);
+        jSplitPaneSystem.setRightComponent(dvp);
         
     }
 
@@ -44,91 +61,147 @@ public class DoctorJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
+        jSplitPaneSystem = new javax.swing.JSplitPane();
+        controlPanel = new javax.swing.JPanel();
         btnPatient = new javax.swing.JButton();
         btnDoctor = new javax.swing.JButton();
         btnHospital = new javax.swing.JButton();
         btnEncounters = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        workArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane1.setDividerLocation(75);
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        controlPanel.setBackground(new java.awt.Color(100, 92, 170));
+        controlPanel.setPreferredSize(new java.awt.Dimension(200, 600));
 
         btnPatient.setText("Patient");
+        btnPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientActionPerformed(evt);
+            }
+        });
 
         btnDoctor.setText("Doctor");
+        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoctorActionPerformed(evt);
+            }
+        });
 
         btnHospital.setText("Hospital");
+        btnHospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHospitalActionPerformed(evt);
+            }
+        });
 
         btnEncounters.setText("Encounters");
+        btnEncounters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEncountersActionPerformed(evt);
+            }
+        });
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(btnPatient)
-                .addGap(38, 38, 38)
-                .addComponent(btnDoctor)
-                .addGap(30, 30, 30)
-                .addComponent(btnHospital)
-                .addGap(29, 29, 29)
-                .addComponent(btnEncounters)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Doctor");
+
+        javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
+        controlPanel.setLayout(controlPanelLayout);
+        controlPanelLayout.setHorizontalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+        );
+        controlPanelLayout.setVerticalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout)
-                .addGap(19, 19, 19))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPatient)
-                    .addComponent(btnDoctor)
-                    .addComponent(btnHospital)
-                    .addComponent(btnEncounters)
-                    .addComponent(btnLogout))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
-        jSplitPane1.setTopComponent(jPanel1);
+        jSplitPaneSystem.setLeftComponent(controlPanel);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+        javax.swing.GroupLayout workAreaLayout = new javax.swing.GroupLayout(workArea);
+        workArea.setLayout(workAreaLayout);
+        workAreaLayout.setHorizontalGroup(
+            workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
+        workAreaLayout.setVerticalGroup(
+            workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 526, Short.MAX_VALUE)
         );
 
-        jSplitPane1.setRightComponent(jPanel2);
+        jSplitPaneSystem.setRightComponent(workArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPaneSystem)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1)
-                .addContainerGap())
+            .addComponent(jSplitPaneSystem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
+        // TODO add your handling code here:
+        
+        DoctorViewPatient dvp = new DoctorViewPatient(patientDirectory, personDirectory);
+        jSplitPaneSystem.setRightComponent(dvp);
+    }//GEN-LAST:event_btnPatientActionPerformed
+
+    private void btnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDoctorActionPerformed
+
+    private void btnHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHospitalActionPerformed
+
+    private void btnEncountersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncountersActionPerformed
+        // TODO add your handling code here:
+        DoctorEncountersWorkPanel dewp = new DoctorEncountersWorkPanel(patientDirectory, doctorDirectory);
+        jSplitPaneSystem.setRightComponent(dewp);
+    }//GEN-LAST:event_btnEncountersActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,11 +229,18 @@ public class DoctorJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DoctorJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               DoctorJFrame systemFrame = new DoctorJFrame(username);
+               DoctorJFrame systemFrame = new DoctorJFrame(username,personDirectory, patientDirectory, doctorDirectory, hospitalDirectory);
                systemFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                systemFrame.setVisible(true);
             }
@@ -173,8 +253,9 @@ public class DoctorJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnHospital;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPatient;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel controlPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSplitPane jSplitPaneSystem;
+    private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
 }

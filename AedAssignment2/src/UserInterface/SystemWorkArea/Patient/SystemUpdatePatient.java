@@ -1,23 +1,27 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.SystemWorkArea.Patient;
 
 import java.awt.Color;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import JAVAMainModel.City;
-import JAVAMainModel.Community;
-import JAVAMainModel.Patient;
-import JAVAMainModel.PatientDirectory;
-import JAVAMainModel.PersonDirectory;
+import model.City;
+import model.Community;
+import model.House;
+import model.Patient;
+import model.PatientDirectory;
+import model.Person;
+import model.PersonDirectory;
 /**
  *
- * @author adity
+ * @author Aditya
  */
-public class SystemUpdatePatient extends javax.swing.JFrame {
+public class SystemUpdatePatient extends javax.swing.JPanel {
 
     /**
      * Creates new form SystemUpdatePatient
@@ -34,6 +38,7 @@ public class SystemUpdatePatient extends javax.swing.JFrame {
         this.patientDirectory = patientDirectory;
         initCityCmbx();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,286 +48,444 @@ public class SystemUpdatePatient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        lblSearchPatientID = new javax.swing.JLabel();
-        txtSearchPatientID = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
-        lblPersonalInfo = new javax.swing.JLabel();
-        lblContactInfo = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblSearchPatient = new javax.swing.JLabel();
+        txtSearchPatient = new javax.swing.JTextField();
+        btnSearchPatient = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
-        lblAge = new javax.swing.JLabel();
-        lblHeight = new javax.swing.JLabel();
-        lblWeight = new javax.swing.JLabel();
-        lblGender = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        txtAge = new javax.swing.JTextField();
+        lblHeight = new javax.swing.JLabel();
         txtHeight = new javax.swing.JTextField();
+        lblWeight = new javax.swing.JLabel();
         txtWeight = new javax.swing.JTextField();
-        CBoxGender = new javax.swing.JComboBox<>();
-        lblAptNo = new javax.swing.JLabel();
+        comboGender = new javax.swing.JComboBox<>();
+        txtAge = new javax.swing.JTextField();
+        lblContactInfo = new javax.swing.JLabel();
+        txtHouseNo = new javax.swing.JTextField();
+        lblHouseNo = new javax.swing.JLabel();
+        txtStreet = new javax.swing.JTextField();
         lblStreet = new javax.swing.JLabel();
         lblCity = new javax.swing.JLabel();
+        comboCity = new javax.swing.JComboBox<>();
         lblState = new javax.swing.JLabel();
+        comboState = new javax.swing.JComboBox<>();
         lblCommunity = new javax.swing.JLabel();
-        lblMobileNo = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        txtAptNo = new javax.swing.JTextField();
-        txtStreet = new javax.swing.JTextField();
-        CBoxCity = new javax.swing.JComboBox<>();
-        CBoxState = new javax.swing.JComboBox<>();
-        CBoxCommunity = new javax.swing.JComboBox<>();
-        txtMobileNo = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        btnUpdate = new javax.swing.JButton();
+        comboCommunity = new javax.swing.JComboBox<>();
+        lblCellPhoneNo = new javax.swing.JLabel();
+        txtCellPhoneNo = new javax.swing.JTextField();
+        txtEmailID = new javax.swing.JTextField();
+        btnUpdatePatient = new javax.swing.JButton();
+        lblAge = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        lblEmailID = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1.setBackground(new java.awt.Color(191, 172, 224));
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Update Patient Information");
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Update Patient");
 
-        lblSearchPatientID.setText("Search patient By ID:");
+        lblSearchPatient.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblSearchPatient.setText("Search Patient by ID:");
 
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+        txtSearchPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
+                txtSearchPatientActionPerformed(evt);
             }
         });
 
-        lblPersonalInfo.setText("Personal Information");
+        btnSearchPatient.setText("Search");
+        btnSearchPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchPatientActionPerformed(evt);
+            }
+        });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Personal Information");
+
+        lblName.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblName.setText("Name :");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+
+        lblHeight.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblHeight.setText("Height :");
+
+        txtHeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHeightActionPerformed(evt);
+            }
+        });
+
+        lblWeight.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblWeight.setText("Weight :");
+
+        txtWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtWeightActionPerformed(evt);
+            }
+        });
+
+        comboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgeActionPerformed(evt);
+            }
+        });
+
+        lblContactInfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblContactInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblContactInfo.setText("Contact Information");
 
-        lblName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblName.setText("Name");
+        lblHouseNo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblHouseNo.setText("House No :");
 
-        lblAge.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAge.setText("Age");
-
-        lblHeight.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblHeight.setText("Height");
-
-        lblWeight.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblWeight.setText("Weight");
-
-        lblGender.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblGender.setText("Gender");
-
-        CBoxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        lblAptNo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblAptNo.setText("Apartment No.");
-
-        lblStreet.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblStreet.setText("Street");
-
-        lblCity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCity.setText("City");
-
-        lblState.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblState.setText("State");
-
-        lblCommunity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCommunity.setText("Community");
-
-        lblMobileNo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMobileNo.setText("Mobile No.");
-
-        lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblEmail.setText("Email");
-
-        CBoxCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        CBoxState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        CBoxCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        CBoxCommunity.addActionListener(new java.awt.event.ActionListener() {
+        txtStreet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CBoxCommunityActionPerformed(evt);
+                txtStreetActionPerformed(evt);
             }
         });
 
-        btnUpdate.setText("Update Information");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+        lblStreet.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblStreet.setText("Street :");
+
+        lblCity.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblCity.setText("City :");
+
+        comboCity.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCityItemStateChanged(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        lblState.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblState.setText("State :");
+
+        comboState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NY", "MA", "CA", "TX" }));
+
+        lblCommunity.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblCommunity.setText("Community :");
+
+        lblCellPhoneNo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblCellPhoneNo.setText("Cell Phone Number :");
+
+        txtCellPhoneNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCellPhoneNoActionPerformed(evt);
+            }
+        });
+
+        txtEmailID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailIDActionPerformed(evt);
+            }
+        });
+
+        btnUpdatePatient.setText("Update Patient");
+        btnUpdatePatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdatePatientActionPerformed(evt);
+            }
+        });
+
+        lblAge.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblAge.setText("Age :");
+
+        lblGender.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblGender.setText("Gender :");
+
+        lblEmailID.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblEmailID.setText("Email ID :");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(lblHeight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtHeight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblGender, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtAge)
+                                    .addComponent(comboGender, 0, 167, Short.MAX_VALUE)))))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblSearchPatient, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblHouseNo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblEmailID, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(comboCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtHouseNo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblState, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtStreet)
+                                            .addComponent(comboState, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(lblContactInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(comboCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnUpdatePatient)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblCellPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtCellPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSearchPatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSearchPatient)
+                        .addComponent(txtSearchPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblName)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAge))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHeight)
+                    .addComponent(comboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGender))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeight))
+                .addGap(27, 27, 27)
+                .addComponent(lblContactInfo)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtHouseNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHouseNo)
+                        .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblStreet)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCity)
+                        .addComponent(comboCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblState)
+                        .addComponent(comboState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCommunity)
+                    .addComponent(comboCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCellPhoneNo)
+                    .addComponent(txtCellPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailID))
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdatePatient)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtName)
-                                            .addComponent(txtAge)
-                                            .addComponent(txtHeight)
-                                            .addComponent(txtWeight)
-                                            .addComponent(CBoxGender, 0, 186, Short.MAX_VALUE))
-                                        .addGap(271, 271, 271))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(106, 106, 106)
-                                        .addComponent(btnUpdate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAptNo)
-                                    .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblState, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCommunity)
-                                    .addComponent(lblMobileNo)
-                                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblSearchPatientID)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearchPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAptNo)
-                            .addComponent(txtStreet)
-                            .addComponent(CBoxCity, 0, 257, Short.MAX_VALUE)
-                            .addComponent(CBoxState, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CBoxCommunity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMobileNo)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSearch)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtEmail))))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(lblPersonalInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblContactInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+            .addGap(0, 685, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearchPatientID)
-                    .addComponent(txtSearchPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPersonalInfo)
-                    .addComponent(lblContactInfo))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAptNo)
-                    .addComponent(txtAptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAge)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStreet)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeight)
-                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCity)
-                    .addComponent(CBoxCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblWeight)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblState)
-                    .addComponent(CBoxState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblGender)
-                    .addComponent(CBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCommunity)
-                    .addComponent(CBoxCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMobileNo)
-                    .addComponent(txtMobileNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+
+    private void txtSearchPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchPatientActionPerformed
         // TODO add your handling code here:
-        int patientId = Integer.parseInt( txtSearchPatientID.getText());
-         
-         for(Patient p: patientDirectory.getPatients()){
-             
-             if(patientId == p.getPatientId()){
-                 txtName.setText(p.getPersonName());
-                 txtAge.setText(String.valueOf(p.getAge()));
-                 CBoxGender.setSelectedItem(p.getSex());
-                 txtHeight.setText(String.valueOf(p.getHeight()));
-                 txtWeight.setText(String.valueOf(p.getWeight()));
-                 
-                 txtAptNo.setText(String.valueOf(p.getHouse().getAptNum()));
-                 txtStreet.setText(String.valueOf(p.getHouse().getStreetAddress()));
-                 
+    }//GEN-LAST:event_txtSearchPatientActionPerformed
+
+    private void btnSearchPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPatientActionPerformed
+        // TODO add your handling code here:
+
+        int patientId = Integer.parseInt( txtSearchPatient.getText());
+
+        for(Patient p: patientDirectory.getPatients()){
+
+            if(patientId == p.getPatientId()){
+                txtName.setText(p.getName());
+                txtAge.setText(String.valueOf(p.getAge()));
+                comboGender.setSelectedItem(p.getGender());
+                txtHeight.setText(String.valueOf(p.getHeight()));
+                txtWeight.setText(String.valueOf(p.getWeight()));
+
+                txtHouseNo.setText(String.valueOf(p.getHouse().getHouseNum()));
+                txtStreet.setText(String.valueOf(p.getHouse().getStreet()));
+
                 String city = null;
-                String community = null;              
-                Map<String, String> communityMap = p.getHouse().getCommunity().getCommunity();            
-                for(Map.Entry m: communityMap.entrySet()){  
+                String community = null;
+                Map<String, String> communityMap = p.getHouse().getCommunity().getCommunity();
+                for(Map.Entry m: communityMap.entrySet()){
                     city = m.getKey().toString();
                     community = m.getValue().toString();
-                }  
-                 
-                CBoxCity.setSelectedItem(city);
-                CBoxCommunity.setSelectedItem(community);
-                
-                txtEmail.setText(p.getEmail());
-                txtMobileNo.setText(String.valueOf(p.getMobileNumber()));
-                
-            
-             }
-                 
-         }
-    }//GEN-LAST:event_btnSearchActionPerformed
+                }
 
-    private void CBoxCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBoxCommunityActionPerformed
+                comboCity.setSelectedItem(city);
+                comboCommunity.setSelectedItem(community);
+
+                txtEmailID.setText(p.getEmailId());
+                txtCellPhoneNo.setText(String.valueOf(p.getCellPhoneNumber()));
+
+            }
+
+        }
+    }//GEN-LAST:event_btnSearchPatientActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHeightActionPerformed
+
+    private void txtWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtWeightActionPerformed
+
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeActionPerformed
+
+    private void txtStreetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStreetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStreetActionPerformed
+
+    private void comboCityItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCityItemStateChanged
         // TODO add your handling code here:
         initCommunityCmbx();
-    }//GEN-LAST:event_CBoxCommunityActionPerformed
+    }//GEN-LAST:event_comboCityItemStateChanged
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:try{
-            try{
-                if(EmpytyFieldValidation()){
+    private void txtCellPhoneNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCellPhoneNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCellPhoneNoActionPerformed
+
+    private void txtEmailIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailIDActionPerformed
+
+    private void btnUpdatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePatientActionPerformed
+        // TODO add your handling code here:
+
+        try{
+            if(EmpytyFieldValidation()){
 
                 if(RegexValidation()){
 
-                   
+                    String name = txtName.getText();
+                    long cellPhoneNumber = Long.parseLong(txtCellPhoneNo.getText());
+                    String emailId = txtEmailID.getText();
+                    int age = Integer.parseInt( txtAge.getText());
+                    String gender = comboGender.getSelectedItem().toString();
+
+                    House house = new House();
+                    Community community = new Community();
+
+                    house.setHouseNum(Integer.parseInt(txtHouseNo.getText()));
+                    house.setStreet(txtStreet.getText());
+
+                    Map<String,String>communities=new HashMap<>();
+                    communities.put(comboCity.getSelectedItem().toString(),comboCommunity.getSelectedItem().toString());
+                    community.setCommunity(communities);
+                    house.setCommunity(community);
+
+                    float height = Float.parseFloat(txtHeight.getText());
+                    float weight = Float.parseFloat(txtWeight.getText());
+
+                    int patientId = Integer.parseInt( txtSearchPatient.getText());
+
+                    for(Patient p: patientDirectory.getPatients()){
+
+                        if(patientId == p.getPatientId()){
+                            p.setName(name);
+                            p.setAge(age);
+                            p.setCellPhoneNumber(cellPhoneNumber);
+                            p.setEmailId(emailId);
+                            p.setGender(gender);
+                            p.setHouse(house);
+                            p.setHeight(height);
+                            p.setWeight(weight);
+                        }
+                    }
+
+                    JOptionPane.showMessageDialog(this,"Patient Info Updated Successfully for Patient with Id is:"+ patientId);
+
                 }
                 else{
                     JOptionPane.showMessageDialog(this,"Some Error in entered data.Please check over the red fields to know more.");
@@ -338,12 +501,10 @@ public class SystemUpdatePatient extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Patient not registered, Try again");
             System.out.println(e.toString());
             emptyValidationStatus=true;
-            if(personDirectory.getPersonDirectory().size()>0)
-            personDirectory.getPersonDirectory().remove(personDirectory.getPersonDirectory().size() - 1);
         }
-            
-    }//GEN-LAST:event_btnUpdateActionPerformed
-private boolean RegexValidation() {
+    }//GEN-LAST:event_btnUpdatePatientActionPerformed
+
+    private boolean RegexValidation() {
         if(!txtName.getText().matches("^[a-zA-Z ]+$"))
         {
             txtName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
@@ -393,33 +554,33 @@ private boolean RegexValidation() {
             txtWeight.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
         }
         
-        if(!txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+        if(!txtEmailID.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
         {
-            txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtEmail.setToolTipText("Please enter a valid Email Address in the form abc@xyy.com");
+            txtEmailID.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtEmailID.setToolTipText("Please enter a valid Email Address in the form abc@xyy.com");
             validationCheck=false;
         }
         
-        if(txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+        if(txtEmailID.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$"))
         {
-            txtEmail.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+            txtEmailID.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
         }
         
-        if(!txtMobileNo.getText().matches("^[0-9]{10}$"))
+        if(!txtCellPhoneNo.getText().matches("^[0-9]{10}$"))
         {
-            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtMobileNo.setToolTipText("Please enter a 10 digit number");
+            txtCellPhoneNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtCellPhoneNo.setToolTipText("Please enter a 10 digit number");
             validationCheck=false;
         }
         
-        if(txtMobileNo.getText().matches("^[0-9]{10}$"))
+        if(txtCellPhoneNo.getText().matches("^[0-9]{10}$"))
         {
-            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+            txtCellPhoneNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
         }
         return validationCheck;
     }
-
-private boolean EmpytyFieldValidation() {
+    
+    private boolean EmpytyFieldValidation() {
         if(txtName.getText().equals(null) || txtName.getText().trim().isEmpty() )
         {
             txtName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
@@ -463,15 +624,15 @@ private boolean EmpytyFieldValidation() {
             
         }
          
-        if(txtAptNo.getText().equals(null) || txtAptNo.getText().trim().isEmpty())
+        if(txtHouseNo.getText().equals(null) || txtHouseNo.getText().trim().isEmpty())
         {
-            txtAptNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtAptNo.setToolTipText("This Field Cannot be empty");
+            txtHouseNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHouseNo.setToolTipText("This Field Cannot be empty");
             emptyValidationStatus= false;
         }
-        if(!txtAptNo.getText().equals(null) && !txtAptNo.getText().trim().isEmpty())
+        if(!txtHouseNo.getText().equals(null) && !txtHouseNo.getText().trim().isEmpty())
         {
-            txtAptNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+            txtHouseNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
         }
         
         
@@ -487,75 +648,74 @@ private boolean EmpytyFieldValidation() {
            
         }
         
-        if(txtMobileNo.getText().equals(null) || txtMobileNo.getText().trim().isEmpty())
+        if(txtCellPhoneNo.getText().equals(null) || txtCellPhoneNo.getText().trim().isEmpty())
         {
-            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtMobileNo.setToolTipText("This Field Cannot be empty");
+            txtCellPhoneNo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtCellPhoneNo.setToolTipText("This Field Cannot be empty");
             emptyValidationStatus=false;
         }
-        if(!txtMobileNo.getText().equals(null) && !txtMobileNo.getText().trim().isEmpty())
+        if(!txtCellPhoneNo.getText().equals(null) && !txtCellPhoneNo.getText().trim().isEmpty())
         {
-            txtMobileNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+            txtCellPhoneNo.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
         }
         return emptyValidationStatus;
     }
     
     private void initCommunityCmbx() {
-        CBoxCommunity.removeAllItems();
+        comboCommunity.removeAllItems();
         int count = 0;
-        var selectedCity=CBoxCity.getSelectedItem().toString();
+        var selectedCity=comboCity.getSelectedItem().toString();
         City city=City.valueOf(selectedCity);
         Community community=new Community();
         community.setLstCommunity();
         String[] communities=community.getLstCommunity().get(city);
             for (String community_ : communities) {
-                CBoxCommunity.addItem(communities[count++]);
+                comboCommunity.addItem(communities[count++]);
             }
     }
     
     private void initCityCmbx() {
-       CBoxCity.removeAllItems();
+       comboCity.removeAllItems();
        int count = 0;
         City[] cities = City.values();
         for (City city_ : cities) {
-            CBoxCity.addItem(cities[count++].toString());
+            comboCity.addItem(cities[count++].toString());
         }
        initCommunityCmbx();
     }
-    
-  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CBoxCity;
-    private javax.swing.JComboBox<String> CBoxCommunity;
-    private javax.swing.JComboBox<String> CBoxGender;
-    private javax.swing.JComboBox<String> CBoxState;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnSearchPatient;
+    private javax.swing.JButton btnUpdatePatient;
+    private javax.swing.JComboBox<String> comboCity;
+    private javax.swing.JComboBox<String> comboCommunity;
+    private javax.swing.JComboBox<String> comboGender;
+    private javax.swing.JComboBox<String> comboState;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblAptNo;
+    private javax.swing.JLabel lblCellPhoneNo;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCommunity;
     private javax.swing.JLabel lblContactInfo;
-    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailID;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblHeight;
-    private javax.swing.JLabel lblMobileNo;
+    private javax.swing.JLabel lblHouseNo;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPersonalInfo;
-    private javax.swing.JLabel lblSearchPatientID;
+    private javax.swing.JLabel lblSearchPatient;
     private javax.swing.JLabel lblState;
     private javax.swing.JLabel lblStreet;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblWeight;
     private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtAptNo;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtCellPhoneNo;
+    private javax.swing.JTextField txtEmailID;
     private javax.swing.JTextField txtHeight;
-    private javax.swing.JTextField txtMobileNo;
+    private javax.swing.JTextField txtHouseNo;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtSearchPatientID;
+    private javax.swing.JTextField txtSearchPatient;
     private javax.swing.JTextField txtStreet;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
-
 }
