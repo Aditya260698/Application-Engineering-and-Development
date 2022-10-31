@@ -11,6 +11,9 @@ import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.PersonDirectory;
 import UserInterface.MainJFrame;
+import UserInterface.SystemWorkArea.Doctor.SystemViewDoctor;
+import UserInterface.SystemWorkArea.Encounter.SystemViewEncounter;
+import UserInterface.SystemWorkArea.Hospital.SystemViewHospital;
 
 /**
  *
@@ -189,15 +192,18 @@ public class PatientJFrame extends javax.swing.JFrame {
     private void btnHospActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospActionPerformed
         // TODO add your handling code here:
         
-        PatientViewHospital viewHosp = new PatientViewHospital(username,hospitalDirectory);
+     
+  PatientViewHospital viewHosp = new PatientViewHospital(username,hospitalDirectory);
         jSplitPaneSystem.setRightComponent(viewHosp);
     }//GEN-LAST:event_btnHospActionPerformed
 
     private void btnDoctorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorsActionPerformed
         // TODO add your handling code here:
-        //System.out.println(doctorDirectory.getDoctors().toString()+" In Doctors call");
+System.out.println(doctorDirectory.getDoctors().toString()+" In Doctors call");
         PatientViewDoctor pvd = new PatientViewDoctor(username,personDirectory, doctorDirectory);
         jSplitPaneSystem.setRightComponent(pvd);
+
+
     }//GEN-LAST:event_btnDoctorsActionPerformed
 
     private void btnPersonalInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalInfoActionPerformed
@@ -209,12 +215,13 @@ public class PatientJFrame extends javax.swing.JFrame {
     private void btnAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentsActionPerformed
         // TODO add your handling code here:
         
-        PatientViewEncounter ve = new PatientViewEncounter(username,patientDirectory);
+        PatientViewEncounter ve = new PatientViewEncounter(username, patientDirectory);
         jSplitPaneSystem.setRightComponent(ve);
     }//GEN-LAST:event_btnAppointmentsActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**

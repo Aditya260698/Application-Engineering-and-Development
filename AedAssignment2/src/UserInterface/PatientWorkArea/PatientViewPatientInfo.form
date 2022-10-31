@@ -23,33 +23,25 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="lblSearchPatient" min="-2" pref="189" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtSearchPatient" min="-2" pref="177" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnSearchPatient" min="-2" pref="143" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblWeight" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="lblGender" min="-2" pref="64" max="-2" attributes="0"/>
                           <Component id="lblAge" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="lblHeight" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="lblName" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="533" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblHeight" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="lblName" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="lblWeight" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="txtWeight" min="-2" pref="174" max="-2" attributes="0"/>
@@ -67,11 +59,14 @@
                                       <Component id="lblHouseNo" min="-2" pref="71" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="comboGender" pref="174" max="32767" attributes="0"/>
-                                          <Component id="txtAge" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="comboGender" pref="174" max="32767" attributes="0"/>
+                                              <Component id="txtAge" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="btnUpdatePatient" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="47" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lblState" alignment="1" min="-2" pref="123" max="-2" attributes="0"/>
                                           <Component id="lblCommunity" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
@@ -98,18 +93,12 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
+                      <Component id="lblTitle" min="-2" pref="631" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="65" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-              <Component id="lblTitle" min="-2" pref="631" max="-2" attributes="0"/>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnUpdatePatient" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -184,11 +173,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="txtEmailID" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblEmailID" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblEmailID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnUpdatePatient" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="66" max="32767" attributes="0"/>
-              <Component id="btnUpdatePatient" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace pref="127" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

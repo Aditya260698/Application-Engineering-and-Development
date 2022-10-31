@@ -21,20 +21,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="703" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="526" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
-              </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,58 +45,43 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="67" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="77" max="32767" attributes="0"/>
                   <Component id="lblTitle" min="-2" pref="636" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Component id="lblDate" min="-2" pref="94" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblHospitalName" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblPatientId" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <Component id="lblDoctorId" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblPulse" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="lblBloodPressure" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <Component id="lblWeight" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblWeight" alignment="1" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="lblPulse" alignment="1" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="lblBloodPressure" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="lblDoctorId" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="lblPatientId" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="lblHospitalName" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="lblDate" min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtEncounterDate" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
                               <Component id="txtHospName" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txtPatientId" min="-2" pref="167" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnSearchPatient1" min="-2" pref="159" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="txtPulse" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
+                              <Component id="txtTemperature" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
+                              <Component id="txtBloodPressure" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="txtDoctorId" min="-2" pref="167" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnSearchDoctor" min="-2" pref="159" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="txtBloodPressure" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
-                              <Component id="txtPulse" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
-                              <Component id="txtTemperature" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtPatientId" min="-2" pref="167" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnSearchPatient1" min="-2" pref="159" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="234" max="-2" attributes="0"/>
                           <Component id="btnCreateEncounter" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -115,46 +94,46 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblTitle" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace pref="154" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblDate" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="txtEncounterDate" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblHospitalName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="txtHospName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="lblDate" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblPatientId" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="txtHospName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="lblHospitalName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtPatientId" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="btnSearchPatient1" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblPatientId" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" pref="18" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblDoctorId" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="txtDoctorId" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="btnSearchDoctor" alignment="3" max="32767" attributes="0"/>
+                      <Component id="lblDoctorId" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblBloodPressure" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="txtBloodPressure" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="lblBloodPressure" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblPulse" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="txtPulse" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="lblPulse" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblWeight" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="txtTemperature" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtTemperature" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="lblWeight" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnCreateEncounter" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

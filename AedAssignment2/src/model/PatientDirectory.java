@@ -30,7 +30,7 @@ public class PatientDirectory {
        community.setCommunity(communities);
        house.setCommunity(community);
         
-        Patient patient=new Patient("Tejas",Long.parseLong("8879385690"),"t@g.com",20,"Male",house,2554,Float.parseFloat("6.5"),88,"t11");
+        Patient patient=new Patient("Aditya",Long.parseLong("8576938775"),"aditya@gmail.com",20,"Male",house,2554,Float.parseFloat("6.5"),88,"a11");
         EncounterHistory encounterHistory=new EncounterHistory();
         Encounter encounter=new Encounter();
         

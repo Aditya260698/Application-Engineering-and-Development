@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Patient;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -59,17 +60,17 @@ public class SystemViewPatient extends javax.swing.JPanel {
 
         tblPatientList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Patient Id", "Name", "Mobile No", "EmailId", "Age", "Gender", "Height", "Weight"
+                "Patient Id", "Name", "Age", "Gender", "Age", "Height", "Weight", "Phone No", "Email", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -141,24 +142,19 @@ public class SystemViewPatient extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
 
-        //        int selectedRowIndex = tblEmployeeList.getSelectedRow();
-        //
-        //        if(selectedRowIndex<0){
-            //            JOptionPane.showMessageDialog(this, "Please select a row to delete");
-            //            return;
-            //        }
-        //
-        //        DefaultTableModel model = (DefaultTableModel) tblEmployeeList.getModel();
-        //        Employee selectedEmployee = (Employee) model.getValueAt(selectedRowIndex,0 );
-        //        employeeList.deleteEmployee(selectedEmployee);
-        //
-        //        JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
-        //
-        //        populateEmployeeTable();
-        //        txtTeamInfo.setText("");
-        //        txtCellPhoneNumber.setText("");
-        //        txtEmailAddress.setText("");
-        //        lblDisplayPhoto.setIcon(null);
+        int selectedRowIndex = tblPatientList.getSelectedRow();
+
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblPatientList.getModel();
+        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex,0 );
+        patientDirectory.deletePatient(selectedPatient);
+
+        JOptionPane.showMessageDialog(this, "Patient deleted successfully!");
+        populateData();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchPatientActionPerformed
@@ -167,6 +163,14 @@ public class SystemViewPatient extends javax.swing.JPanel {
 
     private void btnSearchPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPatientActionPerformed
         // TODO add your handling code here:
+        
+        if(txtSearchPatient.getText().trim().isEmpty()|| txtSearchPatient.getText()==null)
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter a valid Patient Name");
+            return;
+        }
+        
+        populateDataByPatientName();
         
     }//GEN-LAST:event_btnSearchPatientActionPerformed
 
@@ -202,7 +206,7 @@ public class SystemViewPatient extends javax.swing.JPanel {
                     
                 model.addRow(new Object[]
                 {patient,patient.getName(), 
-                    patient.getAge(),patient.getGender(),patient.getHeight(),patient.getWeight(), patient.getCellPhoneNumber(),patient.getEmailId(),patient.getHouse().getHouseNum()+" "+ patient.getHouse().getStreet(),
+                    patient.getCellPhoneNumber(),patient.getAge(),patient.getHeight(),patient.getWeight(), patient.getEmailId(),patient.getCellPhoneNumber(),patient.getHouse().getHouseNum()+" "+ patient.getHouse().getStreet(),
                     city,community});
 
             });
@@ -218,6 +222,45 @@ public class SystemViewPatient extends javax.swing.JPanel {
         }
     }
 }
-}
+
+    private void populateDataByPatientName() {
+        try{
+            var x = patientDirectory.getPatients();
+            DefaultTableModel model = new DefaultTableModel(new Object[]{ "Patient Id", "Patient Name", "Contact Number", "Age","Height","Weight","Email", "Contact", "Address", "City", "Community"}, 0);
+            if(x!=null && !x.isEmpty())
+            {
+                x.forEach(patient -> {
+                String searchPatientName = txtSearchPatient.getText();
+                if(patient.getName().toLowerCase().contains(searchPatientName.toLowerCase())){
+                    
+                    String city = null;
+                    String community = null;              
+                    Map<String, String> communityMap = patient.getHouse().getCommunity().getCommunity();            
+                    for(Map.Entry m: communityMap.entrySet()){  
+                        city = m.getKey().toString();
+                        community = m.getValue().toString();
+                    }  
+
+                    model.addRow(new Object[]
+                    {patient,patient.getName(), 
+                    patient.getCellPhoneNumber(),patient.getAge(),patient.getHeight(),patient.getWeight(), patient.getEmailId(),patient.getCellPhoneNumber(),patient.getHouse().getHouseNum()+" "+ patient.getHouse().getStreet(),
+                    city,community});
+                    
+                }
+
+            });
+                
+            tblPatientList.setModel(model);
+            }
+            else{
+                tblPatientList.setModel(model);
+            }
+        }
+        catch(Exception e){
+            System.out.println("Exception occured in populating patients data");
+        }
+    }
+    }
+
      
        

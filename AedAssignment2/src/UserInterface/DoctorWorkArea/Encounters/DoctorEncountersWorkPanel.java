@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.DoctorWorkArea.Encounters;
-
 import UserInterface.SystemWorkArea.Encounter.*;
 import model.DoctorDirectory;
 import model.PatientDirectory;
@@ -17,15 +16,17 @@ public class DoctorEncountersWorkPanel extends javax.swing.JPanel {
 
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
+    String username;
     /**
      * Creates new form SystemPatient
      */
-    public DoctorEncountersWorkPanel(PatientDirectory patientDirectory, DoctorDirectory doctorDirectory) {
+    public DoctorEncountersWorkPanel(String username, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.patientDirectory = patientDirectory;
         this.doctorDirectory = doctorDirectory;
+        this.username = username;
               
-        DoctorViewEncounter doctorViewEncounter = new DoctorViewEncounter(patientDirectory);
+        DoctorViewEncounter doctorViewEncounter = new DoctorViewEncounter( patientDirectory);
         splitPane.setRightComponent(doctorViewEncounter);
     }
 
@@ -88,7 +89,7 @@ public class DoctorEncountersWorkPanel extends javax.swing.JPanel {
                 .addComponent(btnCreateEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdateEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
 
         controlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreateEncounter, btnUpdateEncounter, btnViewEncounters});
@@ -114,7 +115,7 @@ public class DoctorEncountersWorkPanel extends javax.swing.JPanel {
         patientWorkArea.setLayout(patientWorkAreaLayout);
         patientWorkAreaLayout.setHorizontalGroup(
             patientWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 788, Short.MAX_VALUE)
         );
         patientWorkAreaLayout.setVerticalGroup(
             patientWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +128,7 @@ public class DoctorEncountersWorkPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane)
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,8 +144,12 @@ public class DoctorEncountersWorkPanel extends javax.swing.JPanel {
 
     private void btnViewEncountersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEncountersActionPerformed
         // TODO add your handling code here:
-        DoctorViewEncounter doctorViewEncounter = new DoctorViewEncounter(patientDirectory);
-        splitPane.setRightComponent(doctorViewEncounter );
+//        DoctorViewEncounter doctorViewEncounter = new DoctorViewEncounter(patientDirectory);
+//        splitPane.setRightComponent(doctorViewEncounter );
+
+        SystemViewEncounter systemViewEncounter = new SystemViewEncounter(patientDirectory);
+        splitPane.setRightComponent(systemViewEncounter );
+
     }//GEN-LAST:event_btnViewEncountersActionPerformed
 
     private void btnUpdateEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEncounterActionPerformed

@@ -12,6 +12,7 @@ import model.DoctorDirectory;
 import model.DoctorSpecialization;
 import model.PersonDirectory;
 import UserInterface.SystemWorkArea.Patient.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,13 +98,18 @@ public class SystemViewDoctor extends javax.swing.JPanel {
 
         btnSearchDoctor.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchDoctor.setText("Search");
+        btnSearchDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchDoctorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblSearchDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -112,7 +118,7 @@ public class SystemViewDoctor extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSearchDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,50 +146,48 @@ public class SystemViewDoctor extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 712, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 430, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        int selectedRowIndex = tblDoctorList.getSelectedRow();
 
-        //        int selectedRowIndex = tblEmployeeList.getSelectedRow();
-        //
-        //        if(selectedRowIndex<0){
-            //            JOptionPane.showMessageDialog(this, "Please select a row to delete");
-            //            return;
-            //        }
-        //
-        //        DefaultTableModel model = (DefaultTableModel) tblEmployeeList.getModel();
-        //        Employee selectedEmployee = (Employee) model.getValueAt(selectedRowIndex,0 );
-        //        employeeList.deleteEmployee(selectedEmployee);
-        //
-        //        JOptionPane.showMessageDialog(this, "Employee deleted successfully!");
-        //
-        //        populateEmployeeTable();
-        //        txtTeamInfo.setText("");
-        //        txtCellPhoneNumber.setText("");
-        //        txtEmailAddress.setText("");
-        //        lblDisplayPhoto.setIcon(null);
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblDoctorList.getModel();
+        Doctor selectedDoctor = (Doctor) model.getValueAt(selectedRowIndex,0 );
+        doctorDirectory.deleteDoctor(selectedDoctor);
+
+        JOptionPane.showMessageDialog(this, "Doctor deleted successfully!");
+        populateData();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchDoctorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchDoctorActionPerformed
+
+    private void btnSearchDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDoctorActionPerformed
+        // TODO add your handling code here:
+        if(txtSearchDoctor.getText().trim().isEmpty()|| txtSearchDoctor.getText()==null)
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter a valid Doctor Name");
+            return;
+        }
+        
+         populateDataByDocName();  
+    }//GEN-LAST:event_btnSearchDoctorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -222,7 +226,7 @@ public class SystemViewDoctor extends javax.swing.JPanel {
                 }
                     
                 model.addRow(new Object[]
-                {doctor.getDoctorId(),doctor.getName(),doctor.getDoctorSpecialization().toString() ,practisingFromDate,
+                {doctor,doctor.getName(),doctor.getDoctorSpecialization().toString() ,practisingFromDate,
                     doctor.getAge(),doctor.getGender(), doctor.getCellPhoneNumber(),doctor.getEmailId(),doctor.getHouse().getHouseNum()+" "+ doctor.getHouse().getStreet(),
                     city,community});
 
@@ -236,4 +240,50 @@ public class SystemViewDoctor extends javax.swing.JPanel {
             System.out.println("Exception occured in populating patients data");
         }
 }
+
+    private void populateDataByDocName() {
+        try{
+            var x = doctorDirectory.getDoctors();
+            DefaultTableModel model = new DefaultTableModel(new Object[]{ "Doctor Id", "Doctor Name", "Specialization","Practising From","HospitalID" ,"Age","Gender","Contact Number" ,"Email", "Address", "City", "Community"}, 0);
+            if(x!=null && !x.isEmpty())
+            {
+                x.forEach(doctor -> {
+                
+                String searchDoc = txtSearchDoctor.getText();
+                
+                if(doctor.getName().contains(searchDoc)){
+                
+                    String city = null;
+                    String community = null;              
+                    Map<String, String> communityMap = doctor.getHouse().getCommunity().getCommunity();            
+                    for(Map.Entry m: communityMap.entrySet()){  
+                        city = m.getKey().toString();
+                        community = m.getValue().toString();
+                    }  
+
+                    String practisingFromDate = null;
+                    try {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                        practisingFromDate = simpleDateFormat.format(doctor.getPracticingFrom());
+                    } catch (Exception ex) {
+                        System.out.println("Date is null");
+                    }
+
+                    model.addRow(new Object[]
+                    {doctor,doctor.getName(),doctor.getDoctorSpecialization().toString() ,practisingFromDate ,doctor.getAge(),doctor.getGender(), doctor.getCellPhoneNumber(),doctor.getEmailId(),doctor.getHouse().getHouseNum()+" "+ doctor.getHouse().getStreet(),
+                        city,community});
+                
+                
+                }
+
+            });
+                
+            tblDoctorList.setModel(model);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            System.out.println("Exception occured in populating patients data");
+        }
+    }
 }

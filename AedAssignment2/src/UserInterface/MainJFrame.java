@@ -15,11 +15,13 @@ import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
 import model.UserRoles;
+import model.Community;
 import UserInterface.CommunityWorkArea.CommunityJFrame;
 import UserInterface.DoctorWorkArea.DoctorJFrame;
 import UserInterface.HospitalWorkArea.HospitalJFrame;
 import UserInterface.PatientWorkArea.PatientJFrame;
 import UserInterface.SystemWorkArea.SystemJFrame;
+import model.Community;
 
 /**
  *
@@ -34,13 +36,15 @@ public class MainJFrame extends javax.swing.JFrame {
     public  DoctorDirectory doctorDirectory;
     public  PatientDirectory patientDirectory;
     public  HospitalDirectory hospitalDirectory;
+    public Community community;
     
     public MainJFrame() {
         initComponents();
         this.personDirectory = new PersonDirectory();
         this.doctorDirectory = new DoctorDirectory();
         this.patientDirectory = new PatientDirectory();
-        this.hospitalDirectory = new HospitalDirectory();        
+        this.hospitalDirectory = new HospitalDirectory();
+        this.community = new Community();        
     }
 
     /**
@@ -126,7 +130,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(324, Short.MAX_VALUE)
+                .addContainerGap(480, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -139,7 +143,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -184,13 +188,12 @@ public class MainJFrame extends javax.swing.JFrame {
             if((username != null && !username.trim().isEmpty()) && (password != null && !password.trim().isEmpty())){
 
                 if(userRole.equals(UserRoles.System_Admin)){
-                    if(username.equals("s") && password.equals("s")){
+                    if(username.equals("System") && password.equals("Admin")){
                         reset();
                         loginStatus = true;
-//                        JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);
-//                        mainFrame.dispose();
                         SystemJFrame systemFrame = new SystemJFrame(username,personDirectory,doctorDirectory,patientDirectory,hospitalDirectory);
-                        systemFrame.main(null);
+                        systemFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                        systemFrame.setVisible(true);
                     }
                     else{
                         loginStatus = false;
@@ -201,10 +204,9 @@ public class MainJFrame extends javax.swing.JFrame {
                     if(username.equals("c") && password.equals("c")){
                         reset();
                         loginStatus = true;
-//                        JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);
-//                        mainFrame.dispose();
-                        CommunityJFrame communityFrame = new CommunityJFrame(username);
-                        communityFrame.main(null);
+                        CommunityJFrame communityFrame = new CommunityJFrame(username, community);
+                        communityFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        communityFrame.setVisible(true);
                     }
                     else{
                         loginStatus = false;
@@ -212,7 +214,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
 
                 if(userRole.equals(UserRoles.Hospital_Admin)){
-                    if(username.equals("h") && password.equals("h")){
+                    if(username.equals("Hospital") && password.equals("Admin")){
                         reset();
                         loginStatus = true;
 //                        JFrame mainFrame = (JFrame) SwingUtilities.getRoot(this);

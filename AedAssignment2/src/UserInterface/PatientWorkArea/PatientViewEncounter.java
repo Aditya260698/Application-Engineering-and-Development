@@ -111,7 +111,7 @@ public class PatientViewEncounter extends javax.swing.JPanel {
         try{
    
             var patients = patientDirectory.getPatients();
-            DefaultTableModel model = new DefaultTableModel(new Object[]{ "PatientID","EncounterID" ,"Encounter Date", "PatientName","DoctorID","Date Of Vitals", "Blood Pressure","Pulse","Temperature"}, 0);
+            DefaultTableModel model = new DefaultTableModel(new Object[]{ "EncounterID","PatientID" ,"Encounter Date", "PatientName","DoctorID","Date Of Vitals", "Blood Pressure","Pulse","Temperature"}, 0);
             if(patients!=null && !patients.isEmpty())
             {
                 
@@ -131,12 +131,9 @@ public class PatientViewEncounter extends javax.swing.JPanel {
                     
                     for (Map.Entry<Integer, EncounterHistory> pair : patient.getPatientHistoryMap().entrySet())
                     {
-                        
                         patientId= pair.getKey();       
                         
-                        if(username.equals(String.valueOf(pair.getKey()))){
-                        
-                            ArrayList<Encounter> encounters = pair.getValue().getPatientEncounterHistory();
+                        ArrayList<Encounter> encounters = pair.getValue().getPatientEncounterHistory();
                         
                         for(Encounter e: encounters){
                             encounterId = e.getEncounterId();
@@ -171,10 +168,8 @@ public class PatientViewEncounter extends javax.swing.JPanel {
                             temperature = vitalSigns.getTemperature();
                             
                             model.addRow(new Object[]
-                            {patientId,encounterId,encounterDate,patientName,doctorId,dateOfVitals,bloodpressure,pulse,temperature});
+                            {e,patientId,encounterDate,patientName,doctorId,dateOfVitals,bloodpressure,pulse,temperature});
                             
-                        }
-                        
                         }
                         
                     } 

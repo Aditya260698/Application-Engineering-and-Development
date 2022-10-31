@@ -46,6 +46,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtTemperature" min="-2" pref="332" max="-2" attributes="0"/>
                               <Component id="txtPulse" min="-2" pref="332" max="-2" attributes="0"/>
+                              <Component id="btnUpdateEncounter" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -80,11 +81,6 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnUpdateEncounter" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -116,7 +112,7 @@
                   <Component id="txtPatientId" alignment="3" max="32767" attributes="0"/>
                   <Component id="btnSearchPatient1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" max="-2" attributes="0">
                   <Component id="lblDoctorId" alignment="3" pref="31" max="32767" attributes="0"/>
                   <Component id="txtDoctorId" alignment="3" pref="31" max="32767" attributes="0"/>
@@ -137,9 +133,9 @@
                   <Component id="lblWeight" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="txtTemperature" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="btnUpdateEncounter" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -150,7 +146,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="24" style="1"/>
         </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Update Encounter "/>
       </Properties>
     </Component>

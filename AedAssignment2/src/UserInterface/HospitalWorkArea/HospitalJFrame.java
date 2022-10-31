@@ -158,8 +158,6 @@ public class HospitalJFrame extends javax.swing.JFrame {
 
         jSplitPaneSystem.setLeftComponent(controlPanel);
 
-        workArea.setBackground(new java.awt.Color(153, 255, 255));
-
         javax.swing.GroupLayout workAreaLayout = new javax.swing.GroupLayout(workArea);
         workArea.setLayout(workAreaLayout);
         workAreaLayout.setHorizontalGroup(

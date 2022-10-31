@@ -6,6 +6,7 @@ package UserInterface.PatientWorkArea;
 
 import java.text.SimpleDateFormat;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Doctor;
 import model.DoctorDirectory;
@@ -89,6 +90,11 @@ public class PatientViewDoctor extends javax.swing.JPanel {
 
         btnSearchDoctor.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchDoctor.setText("Search");
+        btnSearchDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchDoctorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,6 +132,17 @@ public class PatientViewDoctor extends javax.swing.JPanel {
     private void txtSearchDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchDoctorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchDoctorActionPerformed
+
+    private void btnSearchDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDoctorActionPerformed
+        // TODO add your handling code here:
+        if(txtSearchDoctor.getText().trim().isEmpty()|| txtSearchDoctor.getText()==null)
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter a valid Doctor Name");
+            return;
+        }
+        
+         populateDataByDocName(); 
+    }//GEN-LAST:event_btnSearchDoctorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -167,6 +184,51 @@ public class PatientViewDoctor extends javax.swing.JPanel {
                 {doctor.getDoctorId(),doctor.getName(),doctor.getDoctorSpecialization().toString() ,practisingFromDate,
                     doctor.getAge(),doctor.getGender(), doctor.getCellPhoneNumber(),doctor.getEmailId(),doctor.getHouse().getHouseNum()+" "+ doctor.getHouse().getStreet(),
                     city,community});
+
+            });
+                
+            tblDoctorList.setModel(model);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            System.out.println("Exception occured in populating patients data");
+        }
+    }
+
+    private void populateDataByDocName(){ try{
+            var x = doctorDirectory.getDoctors();
+            DefaultTableModel model = new DefaultTableModel(new Object[]{ "Doctor Id", "Doctor Name", "Specialization","Practising From","HospitalID" ,"Age","Gender","Contact Number" ,"Email", "Address", "City", "Community"}, 0);
+            if(x!=null && !x.isEmpty())
+            {
+                x.forEach(doctor -> {
+                
+                String searchDoc = txtSearchDoctor.getText();
+                
+                if(doctor.getName().contains(searchDoc)){
+                
+                    String city = null;
+                    String community = null;              
+                    Map<String, String> communityMap = doctor.getHouse().getCommunity().getCommunity();            
+                    for(Map.Entry m: communityMap.entrySet()){  
+                        city = m.getKey().toString();
+                        community = m.getValue().toString();
+                    }  
+
+                    String practisingFromDate = null;
+                    try {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                        practisingFromDate = simpleDateFormat.format(doctor.getPracticingFrom());
+                    } catch (Exception ex) {
+                        System.out.println("Date is null");
+                    }
+
+                    model.addRow(new Object[]
+                    {doctor,doctor.getName(),doctor.getDoctorSpecialization().toString() ,practisingFromDate ,doctor.getAge(),doctor.getGender(), doctor.getCellPhoneNumber(),doctor.getEmailId(),doctor.getHouse().getHouseNum()+" "+ doctor.getHouse().getStreet(),
+                        city,community});
+                
+                
+                }
 
             });
                 

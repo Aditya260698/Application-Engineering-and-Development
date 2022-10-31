@@ -14,6 +14,7 @@ import model.PatientDirectory;
 import model.PersonDirectory;
 import UserInterface.DoctorWorkArea.Encounters.DoctorEncountersWorkPanel;
 import UserInterface.MainJFrame;
+import model.Community;
 
 /**
  *
@@ -30,6 +31,7 @@ public class DoctorJFrame extends javax.swing.JFrame {
     public static PatientDirectory patientDirectory;
     public static DoctorDirectory doctorDirectory;
     public static HospitalDirectory hospitalDirectory;
+    public static Community community;
     
     public DoctorJFrame(String username,PersonDirectory personDirectory ,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, HospitalDirectory hospitalDirectory) {
         initComponents();
@@ -47,7 +49,7 @@ public class DoctorJFrame extends javax.swing.JFrame {
             mainFrame.main(null);
         }
         
-        DoctorViewPatient dvp = new DoctorViewPatient(patientDirectory, personDirectory);
+        DoctorViewPatient dvp = new DoctorViewPatient(username, patientDirectory, personDirectory);
         jSplitPaneSystem.setRightComponent(dvp);
         
     }
@@ -64,8 +66,7 @@ public class DoctorJFrame extends javax.swing.JFrame {
         jSplitPaneSystem = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
         btnPatient = new javax.swing.JButton();
-        btnDoctor = new javax.swing.JButton();
-        btnHospital = new javax.swing.JButton();
+        btnPersonalInfo = new javax.swing.JButton();
         btnEncounters = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -84,19 +85,11 @@ public class DoctorJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnDoctor.setBackground(new java.awt.Color(0, 255, 255));
-        btnDoctor.setText("Doctor");
-        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
+        btnPersonalInfo.setBackground(new java.awt.Color(0, 255, 255));
+        btnPersonalInfo.setText("Update Info");
+        btnPersonalInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoctorActionPerformed(evt);
-            }
-        });
-
-        btnHospital.setBackground(new java.awt.Color(0, 255, 255));
-        btnHospital.setText("Hospital");
-        btnHospital.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHospitalActionPerformed(evt);
+                btnPersonalInfoActionPerformed(evt);
             }
         });
 
@@ -127,11 +120,10 @@ public class DoctorJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
                 .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
@@ -142,20 +134,16 @@ public class DoctorJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
                 .addComponent(btnPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(49, 49, 49)
                 .addComponent(btnEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
+                .addComponent(btnPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(btnLogout)
                 .addContainerGap())
         );
 
         jSplitPaneSystem.setLeftComponent(controlPanel);
-
-        workArea.setBackground(new java.awt.Color(153, 255, 255));
 
         javax.swing.GroupLayout workAreaLayout = new javax.swing.GroupLayout(workArea);
         workArea.setLayout(workAreaLayout);
@@ -187,26 +175,25 @@ public class DoctorJFrame extends javax.swing.JFrame {
     private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
         // TODO add your handling code here:
         
-        DoctorViewPatient dvp = new DoctorViewPatient(patientDirectory, personDirectory);
+        DoctorViewPatient dvp = new DoctorViewPatient(username, patientDirectory, personDirectory);
         jSplitPaneSystem.setRightComponent(dvp);
     }//GEN-LAST:event_btnPatientActionPerformed
 
-    private void btnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorActionPerformed
+    private void btnPersonalInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalInfoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDoctorActionPerformed
-
-    private void btnHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHospitalActionPerformed
+        DoctorUpdateDoctor dud = new DoctorUpdateDoctor(username, personDirectory, doctorDirectory, community);
+        jSplitPaneSystem.setRightComponent(dud);
+    }//GEN-LAST:event_btnPersonalInfoActionPerformed
 
     private void btnEncountersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncountersActionPerformed
         // TODO add your handling code here:
-        DoctorEncountersWorkPanel dewp = new DoctorEncountersWorkPanel(patientDirectory, doctorDirectory);
+        DoctorEncountersWorkPanel dewp = new DoctorEncountersWorkPanel(username, patientDirectory, doctorDirectory);
         jSplitPaneSystem.setRightComponent(dewp);
     }//GEN-LAST:event_btnEncountersActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
@@ -246,7 +233,7 @@ public class DoctorJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               DoctorJFrame systemFrame = new DoctorJFrame(username,personDirectory, patientDirectory, doctorDirectory, hospitalDirectory);
+               DoctorJFrame systemFrame = new DoctorJFrame(username, personDirectory, patientDirectory, doctorDirectory, hospitalDirectory);
                systemFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                systemFrame.setVisible(true);
             }
@@ -254,11 +241,10 @@ public class DoctorJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDoctor;
     private javax.swing.JButton btnEncounters;
-    private javax.swing.JButton btnHospital;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPatient;
+    private javax.swing.JButton btnPersonalInfo;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane jSplitPaneSystem;

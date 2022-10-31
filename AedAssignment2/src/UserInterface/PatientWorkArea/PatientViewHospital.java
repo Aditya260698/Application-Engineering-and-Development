@@ -13,6 +13,7 @@ import model.Community;
 import model.Hospital;
 import model.HospitalDirectory;
 import UserInterface.SystemWorkArea.Patient.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +67,11 @@ public class PatientViewHospital extends javax.swing.JPanel {
 
         btnSearchHospital.setBackground(new java.awt.Color(102, 255, 102));
         btnSearchHospital.setText("Search");
+        btnSearchHospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchHospitalActionPerformed(evt);
+            }
+        });
 
         tblHospitalList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,6 +129,17 @@ public class PatientViewHospital extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchHospitalActionPerformed
 
+    private void btnSearchHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchHospitalActionPerformed
+        // TODO add your handling code here:
+        if(txtSearchHospital.getText().trim().isEmpty()|| txtSearchHospital.getText()==null)
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter a valid Hospital Name");
+            return;
+        }
+        
+        populateDataByHospitalName();
+    }//GEN-LAST:event_btnSearchHospitalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearchHospital;
@@ -166,5 +183,47 @@ public class PatientViewHospital extends javax.swing.JPanel {
        {
            System.out.println(e);
        }    
+    }
+
+    private void populateDataByHospitalName(){
+        try{
+            Set<Hospital> hospitals = hospitalDirectory.getHospitals();
+            DefaultTableModel model = new DefaultTableModel(new Object[]{ "Hospital Id", "Hospital Name", "Hospital Address", "City","Community"}, 0);
+            if(hospitals!= null && !hospitals.isEmpty()){
+              
+                for(Hospital h: hospitals){           
+                    
+                    String searchHosp = txtSearchHospital.getText();
+                    
+                    if(h.getHospitalName().toLowerCase().contains(searchHosp.toLowerCase())){
+                    
+                        int hospitalId = h.getHospitalID();
+                        String hospName = h.getHospitalName();
+                        String hospAddress = h.getHospitalAddress();
+                        Community community = h.getCommunity();
+                        String city = null;
+                        String communityName = null;
+
+                        Map<String,String> communityMap = community.getCommunity();
+
+                        for(Map.Entry m: communityMap.entrySet()){  
+                            city = m.getKey().toString();
+                            communityName = m.getValue().toString();
+                        }  
+
+                        model.addRow(new Object[]
+                            {hospitalId,hospName,hospAddress,city,communityName}); 
+
+                    }
+                          
+                }
+            }
+            tblHospitalList.setModel(model);
+            
+       }
+       catch(Exception e)
+       {
+           System.out.println(e);
+       } 
     }
 }

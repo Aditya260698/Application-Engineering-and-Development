@@ -16,6 +16,7 @@ import UserInterface.MainJFrame;
 import UserInterface.SystemWorkArea.Encounter.SystemEncounterWorkPanel;
 import UserInterface.SystemWorkArea.Hospital.SystemHospitalWorkPanel;
 import UserInterface.SystemWorkArea.Patient.SystemPatientWorkPanel;
+import model.Community;
 
 /**
  *

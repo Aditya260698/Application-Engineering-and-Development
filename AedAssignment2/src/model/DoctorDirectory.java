@@ -29,7 +29,7 @@ public class DoctorDirectory {
         community.setCommunity(communities);
         house.setCommunity(community);
        
-        Doctor d = new Doctor("Shreyas",Long.parseLong("8422097015"), "tg@g.com", 22, "Male", house, 1989, new Date(), DoctorSpecialization.DiagnosticRadiology,"s11");
+        Doctor d = new Doctor("Mohit",Long.parseLong("8576938028"), "mohit@gmail.com", 22, "Male", house, 1989, new Date(), DoctorSpecialization.DiagnosticRadiology,"s11");
        
         this.doctors.add(d);
     }
@@ -45,6 +45,10 @@ public class DoctorDirectory {
     public void addNewDoctor(Person doctor)
     {
         doctors.add((Doctor) doctor);
+    }
+
+    public void deleteDoctor(Doctor selectedPatient) {
+        doctors.remove(selectedPatient);
     }
     
 }

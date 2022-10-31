@@ -8,22 +8,26 @@ import UserInterface.SystemWorkArea.Doctor.SystemDoctorWorkPanel;
 import UserInterface.SystemWorkArea.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Community;
 import UserInterface.MainJFrame;
 
 /**
  *
- * @author Aditya
+ * @author Tejas
  */
 public class CommunityJFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form CommunityJFrame
+     * Creates new form DoctorJFrame
      */
-    public static String username;
     
-    public CommunityJFrame(String urername) {
+    public static String username;
+    public static Community community;
+    
+    public CommunityJFrame(String username, Community community) {
         initComponents();
         this.username = username;
+        this.community = community;
         
         if(username == null){
             JOptionPane.showMessageDialog(this, "Please login to proceed");
@@ -32,9 +36,9 @@ public class CommunityJFrame extends javax.swing.JFrame {
             mainFrame.main(null);
         }
         
-     //   SystemDoctorWorkPanel systempatient = new SystemDoctorWorkPanel();
-     //   jSplitPane1.setRightComponent(systempatient);
-    
+        CreateCommunity createCommunity = new CreateCommunity(community);
+        jSplitPaneSystem.setRightComponent(createCommunity);
+        
     }
 
     /**
@@ -46,11 +50,12 @@ public class CommunityJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPaneSystem = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
-        btnHouses = new javax.swing.JButton();
         btnCommunities = new javax.swing.JButton();
-        btnHospital = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnCommunities1 = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,27 +63,10 @@ public class CommunityJFrame extends javax.swing.JFrame {
         controlPanel.setBackground(new java.awt.Color(153, 255, 255));
         controlPanel.setPreferredSize(new java.awt.Dimension(200, 600));
 
-        btnHouses.setBackground(new java.awt.Color(0, 255, 255));
-        btnHouses.setText("Houses");
-        btnHouses.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHousesActionPerformed(evt);
-            }
-        });
-
-        btnCommunities.setBackground(new java.awt.Color(0, 255, 255));
-        btnCommunities.setText("Community");
+        btnCommunities.setText("Add Community");
         btnCommunities.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCommunitiesActionPerformed(evt);
-            }
-        });
-
-        btnHospital.setBackground(new java.awt.Color(0, 255, 255));
-        btnHospital.setText("City");
-        btnHospital.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHospitalActionPerformed(evt);
             }
         });
 
@@ -90,89 +78,94 @@ public class CommunityJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel1.setText("Community Admin");
+
+        btnCommunities1.setText("View Community");
+        btnCommunities1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCommunities1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCommunities, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHouses, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCommunities, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCommunities1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(73, 73, 73))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnHouses, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(69, 69, 69)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(btnCommunities, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(btnCommunities1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout)
-                .addGap(24, 24, 24))
+                .addGap(27, 27, 27))
         );
+
+        jSplitPaneSystem.setLeftComponent(controlPanel);
 
         javax.swing.GroupLayout workAreaLayout = new javax.swing.GroupLayout(workArea);
         workArea.setLayout(workAreaLayout);
         workAreaLayout.setHorizontalGroup(
             workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 793, Short.MAX_VALUE)
         );
         workAreaLayout.setVerticalGroup(
             workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
 
+        jSplitPaneSystem.setRightComponent(workArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(212, Short.MAX_VALUE)
-                .addComponent(workArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(controlPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addComponent(jSplitPaneSystem, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(workArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jSplitPaneSystem, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHousesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHousesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHousesActionPerformed
-
     private void btnCommunitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommunitiesActionPerformed
         // TODO add your handling code here:
+        
+        CreateCommunity createCommunity = new CreateCommunity(community);
+        jSplitPaneSystem.setRightComponent(createCommunity);
     }//GEN-LAST:event_btnCommunitiesActionPerformed
-
-    private void btnHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHospitalActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnCommunities1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommunities1ActionPerformed
+        // TODO add your handling code here:
+        
+        ViewCommunity vc = new ViewCommunity(community);
+        jSplitPaneSystem.setRightComponent(vc);
+    }//GEN-LAST:event_btnCommunities1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,11 +193,18 @@ public class CommunityJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CommunityJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CommunityJFrame systemFrame = new CommunityJFrame(username);
+               CommunityJFrame systemFrame = new CommunityJFrame(username,community);
                systemFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                systemFrame.setVisible(true);
             }
@@ -213,10 +213,11 @@ public class CommunityJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCommunities;
-    private javax.swing.JButton btnHospital;
-    private javax.swing.JButton btnHouses;
+    private javax.swing.JButton btnCommunities1;
     private javax.swing.JButton btnLogout;
     private javax.swing.JPanel controlPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSplitPane jSplitPaneSystem;
     private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
 }
