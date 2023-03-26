@@ -1,4 +1,4 @@
-Assignment_2
+Project_2
 # Hospital Management System
 
 INFO 5100 Project 2 - Hospital Management System
